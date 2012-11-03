@@ -1,0 +1,21 @@
+#form {
+	color: white;
+	font-style: bold;
+	background: url(../image/layouts/chalkboard.jpg);
+	width: 400px;
+	height: 400px;
+	margin: auto;
+	box-shadow: 0 0 50px black;
+	background-size:cover !important;
+}
+#form input{
+	margin: 20px 0 20px 50px;
+}
+#apDiv1 {
+	position: relative;
+	width: 292px;;
+	height: 150px;
+	z-index: 1;
+	left: 75px;
+	top: 120px;
+}
