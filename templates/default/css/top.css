@@ -1,0 +1,34 @@
+@charset "utf-8";
+#wrapper {
+	margin: 0 auto;
+	max-width: 1000px;
+	background:#CCC;
+	border: 1px solid black;
+	min-height:800px;
+	margin-bottom:20px;
+}
+#banner {
+	background-color: blue;
+	border: 2px solid black;
+	height: 110px;
+}
+#banner img {
+	margin: 5px;
+	height: 100px;
+	float:left
+}
+#banner h1{
+	font-size: 30pt;
+	font-style:italic;
+	position: top;
+}
+#banner h2, #banner h1{
+	margin-top: 0;
+	margin-bottom:0;
+}
+#comInfo {
+	border: 1px solid red;
+	max-width:700px;
+	height:110px;
+	text-align: center;
+}
