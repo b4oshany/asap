@@ -1,0 +1,42 @@
+body{
+    width:1000px;
+     margin:0 auto;
+}
+#wrapper{
+}
+#main{
+    float:right;
+    margin-right:170px;
+}
+.main_head{
+    text-align:center;
+}
+#frist_div ol{
+    float:left;
+    width:450px;
+    border:2px solid red;
+}
+#second_div ol{
+    float:right;
+    width:450px;
+    border:2px solid red;
+}
+.radios{
+    float:right;
+}
+.head{
+    width:496px;
+    float:right;
+    border: 2px solid red;
+}
+.sub_head{
+    float:right;
+    margin-right:90px;
+}
+
+#lower_div{
+     width:900px;
+}
+.mid_div{
+     display:inline-block;
+}
