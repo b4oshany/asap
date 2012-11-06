@@ -19,6 +19,7 @@
 if(logedin()){
 	//if the user is logged in the display the front or the index page 
 	include ('templates/'.$template.'/top.php');
+	
 }else{
 	// else redirect the user to the login page
 	header('location: login.php');
