@@ -10,7 +10,7 @@ if($hoster === 'localhost'){
 	$mysql_pass = '';
 	
 	//set the database to use
-	$mysql_db = 'assess'; 
+	$mysql_db = 'asap"; 
 	
 }else{
 	
