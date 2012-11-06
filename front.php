@@ -8,7 +8,6 @@
 </head>
 <body>
 <?php 	require_once 'config.inc.php';
-		require_once 'style.php';
 		require_once 'etc/start_session.php';
 
 // the default in the html link tag should be taken out and uncomment the echo

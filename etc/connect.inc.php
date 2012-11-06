@@ -1,4 +1,4 @@
-<?
+<?php
 $hoster = $_SERVER['HTTP_HOST'];
 
 //connect to the database
@@ -10,11 +10,11 @@ if($hoster === 'localhost'){
 	$mysql_pass = '';
 	
 	//set the database to use
-	$mysql_db = 'asap"; 
+	$mysql_db = 'asap'; 
 	
 }else{
 	
-	//privilige user for the database
+	// privilige user for the database
 	$mysql_user = '793226_oshany';
 	$mysql_pass = 'oshany2012';
 	

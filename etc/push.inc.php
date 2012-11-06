@@ -15,14 +15,14 @@ function logger($user, $pass){
 			?>
 			<!-- Alert the user of invalid credentials -->
 			<script type="text/javascript"> alert("Invalid user name and password");</script>
-			<?
+			<?php
 		}else{
 			//collect the user id			
 			$user_id = mysql_result($query_run, 0, 'id');
 			//store the session using the user id
 			$_SESSION['user_id']=$user_id;
 			//redirect the user to the home or front page after they loggged in
-			header('location: '.$hoster.'/asap/index.php');
+			header('location: '.$hoster.'/asap-mobile/index.php');
 		}
 	}else{
 		echo 'not ok';
