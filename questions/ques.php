@@ -38,7 +38,7 @@
 			<div class="formers">  
 				<?php
 				for($a = 1; $a < 6; $a++){
-				echo $a;
+				
 				?>
 					<!-- display 5 checkbox, each has a different value which ranges from 1-5 while having the sanme name attribute -->
 					<input type="checkbox" name="<?php echo $ratings; ?>" value="<?php echo $a; ?>" >

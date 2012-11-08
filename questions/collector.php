@@ -3,8 +3,65 @@
 // however, a try statement is used just incase of an error
 
 	
-require_once '../etc/push.inc.php';
-collect();
+require_once '../etc/connect.inc.php';
+
+	try{
+		for($i = 0; $i < 2; $i++){
+			if($_POST["ratings".$i]){
+				$ratings[$i] = $_POST["ratings".$i];
+				//echo $ratings[$i];
+				if($ratings[$i] == 1){
+					$qresult = mysql_query("SELECT id, ratings_1 FROM ugrad_results");
+					while($results = mysql_fetch_array($qresult)){
+						$r = $results['ratings_1'];
+						//echo $r;
+						$r++;
+						//echo $r;
+						$isql = mysql_query("UPDATE ugrad_results SET ratings_1 =".$r." WHERE id = 1");
+					}
+				}elseif($ratings[$i] == 2){
+					$qresult = mysql_query("SELECT id, ratings_1 FROM ugrad_results");
+					while($results = mysql_fetch_array($qresult)){
+						$r = $results['ratings_1'];
+						//echo $r;
+						$r++;
+						//echo $r;
+						$isql = mysql_query("UPDATE ugrad_results SET ratings_1 =".$r." WHERE id = 2");
+					}
+				}elseif($ratings[$i] == 3){
+					$qresult = mysql_query("SELECT id, ratings_1 FROM ugrad_results");
+					while($results = mysql_fetch_array($qresult)){
+						$r = $results['ratings_1'];
+						//echo $r;
+						$r++;
+						//echo $r;
+						$isql = mysql_query("UPDATE ugrad_results SET ratings_1 =".$r." WHERE id = 3");
+					}
+				}elseif($ratings[$i] == 4){
+					$qresult = mysql_query("SELECT id, ratings_1 FROM ugrad_results");
+					while($results = mysql_fetch_array($qresult)){
+						$r = $results['ratings_1'];
+						//echo $r;
+						$r++;
+						//echo $r;
+						$isql = mysql_query("UPDATE ugrad_results SET ratings_1 =".$r." WHERE id = 4");
+					}
+				}elseif($ratings[$i] == 5){
+					$qresult = mysql_query("SELECT id, ratings_1 FROM ugrad_results");
+					while($results = mysql_fetch_array($qresult)){
+						$r = $results['ratings_1'];
+						//echo $r;
+						$r++;
+						//echo $r;
+						$isql = mysql_query("UPDATE ugrad_results SET ratings_1 =".$r." WHERE id = 5");
+					}
+				}
+			}	
+		}
+	}catch (exception $e){
+		echo $_POST['ratings0'];
+	}
+ 
 
 
 ?>

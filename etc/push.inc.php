@@ -33,17 +33,6 @@ $pass = '32250170a0dca92d53ec9624f336ca24';
 $user = 'oshany';
 logger($user, $pass);
 */
-function collect(){
-	try{
-		for($i = 0; $i < 2; $i++){
-			if($_POST["ratings".$i]){
-				$ratings[$i] = $_POST["ratings".$i];
-				echo $ratings[$i];
-			}	
-		}
-	}catch (exception $e){
-		echo $_POST['ratings0'];
-	}
-}
+
 
 ?>
