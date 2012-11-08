@@ -22,7 +22,7 @@ function logger($user, $pass){
 			//store the session using the user id
 			$_SESSION['user_id']=$user_id;
 			//redirect the user to the home or front page after they loggged in
-			header('location: '.$hoster.'/asap-mobile/index.php');
+			header('location: '.$hoster.'/asap/index.php');
 		}
 	}else{
 		echo 'not ok';
@@ -33,4 +33,17 @@ $pass = '32250170a0dca92d53ec9624f336ca24';
 $user = 'oshany';
 logger($user, $pass);
 */
+function collect(){
+	try{
+		for($i = 0; $i < 2; $i++){
+			if($_POST["ratings".$i]){
+				$ratings[$i] = $_POST["ratings".$i];
+				echo $ratings[$i];
+			}	
+		}
+	}catch (exception $e){
+		echo $_POST['ratings0'];
+	}
+}
+
 ?>

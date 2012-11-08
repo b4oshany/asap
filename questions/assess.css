@@ -1,0 +1,32 @@
+#wrap{
+	margin: 0 auto;
+	width: 960px;
+	}
+.question{
+	width: 700px;
+	height: 50px;
+	float: left;
+	}
+.formers{
+	width: 260px;
+	height: 50px;
+	float: left;
+	}
+.formers, .question{
+	margin-top: 10px;
+	}
+h1, h2{
+	text-align: center;
+	}
+h2{
+	margin-bottom: 50px;
+	}
+#holder{
+	margin-bottom: 30px;
+	}
+footer{
+	padding: 20px 0;
+	margin: 20px 0;
+	clear: both;
+	}
+	
