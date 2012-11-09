@@ -27,6 +27,30 @@
 		<!-- form creation using php for loop. Each question is echoed into a specific div along with its respective checkboxs
 		and posted to the collector that will store the information to the database -->		
 		<form action="collector.php" method="post">
+		<div id="ans">
+			<div id="sex"> 
+				Sex:<br> <input type="checkbox" name="sex" value="male" id="male"><label for="male">M</label>
+						<input type="checkbox" name="sex" value="female" id="female"><label for="female">F</label>
+			</div>
+			<div id="yos"> 
+				Years of Study:<br> 
+						<input type="checkbox" name="yos" value="1" ><label >1</label>
+						<input type="checkbox" name="yos" value="2" ><label >2</label>
+						<input type="checkbox" name="yos" value="3" ><label >3</label>
+						<input type="checkbox" name="yos" value="4" ><label >4</label>
+			</div>
+			<div id="age"> 
+				Age:<br> <input type="checkbox" name="age" value="young" id="young"><label for="young">18-25</label>
+						<input type="checkbox" name="age" value="midage" id="midage"><label for="midage">26-35</label>
+						<input type="checkbox" name="age" value="aged" id="aged"><label for="aged">36-55</label>
+						<input type="checkbox" name="age" value="oldage" id="oldage"><label for="oldage">46 & over</label>
+			</div>
+			<div id="regs"> 
+				Registration Status:<br> <input type="checkbox" name="status" value="pt" id="pt"><label for="pt">P/T</label>
+						<input type="checkbox" name="status" value="ft" id="ft"><label for="ft">F/T</label>
+			</div>
+			<div class="clear"></div>
+		</div>
 		<?php 
 		// call the readme file that contains the questions
 		require_once 'readme.php';
