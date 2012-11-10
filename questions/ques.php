@@ -23,12 +23,10 @@
 <div id="wrap">
 	<h1 id="head">THE UNIVERSITY OF THE WEST INDIES</br> MONA CAMPUS</h1>	
 	<h2>STUDENTS EVALUATION OF COURSE/LECTURES</h2>
-	<div id"holder"> 
+	<div id="holder"> 
 		<!-- form creation using php for loop. Each question is echoed into a specific div along with its respective checkboxs
 		and posted to the collector that will store the information to the database -->		
 		<form action="collector.php" method="post">
-<<<<<<< Updated upstream
-=======
 		<div id="ans">
 			<div id="lecturer"> 
 				Lecturer:  <select name="lect_id">
@@ -65,16 +63,17 @@
 			</div>
 			<div class="clear"></div>
 		</div>
->>>>>>> Stashed changes
 		<?php 
 		// call the readme file that contains the questions
 		require_once 'readme.php';
 		//set the id for the question
 		$qid = "comp"; 
+		$count = 0;
 		//traverse through the file and print the questions based on the number of questions
 		for($i = 0; $i < count($conarray); $i++){
 			//set the ratings input name
-			$ratings = "ratings";
+			$ratings = "ratings".($i+1);
+			$que = $i +1;			
 			?>
 			<!-- print each question in the given file --> 
 			<div class="question"> <?php echo $conarray[$i]; ?></div>
@@ -84,13 +83,16 @@
 				
 				?>
 					<!-- display 5 checkbox, each has a different value which ranges from 1-5 while having the sanme name attribute -->
-					<input type="checkbox" name="<?php echo $ratings; ?>" value="<?php echo $a ?>" >
+					<input type="checkbox" name="<?php echo $ratings; ?>" value="<?php echo $a."-ques".$que."_".$qid ?>" >
 				<?php		
 				}		
 				?>
 			</div>
 		<?php
+		$count = $i + 1;
+		echo $count;
 		}
+		echo '<input type="text" name="count" value="'.$count.'" id="counter">';
 		?>
 			<input type="submit" value="submit">
 		</form>
