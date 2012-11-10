@@ -26,22 +26,8 @@
 	<div id"holder"> 
 		<!-- form creation using php for loop. Each question is echoed into a specific div along with its respective checkboxs
 		and posted to the collector that will store the information to the database -->		
-		<form action="collector.php" method="post">
-<<<<<<< Updated upstream
-=======
+		<form action="collecto.php" method="post">
 		<div id="ans">
-			<div id="lecturer"> 
-				Lecturer:  <select name="lect_id">
-								 <option selected value="620042528">Oshane Bailey</option>
-								 <option value="620032422">Vivienne</option>
-								 <option value="620032421">John Brown</option>
-								 <option value="620032122">Ok Math</option>
-							</select>
-				Course Code:	<input type="text" name="ccode" value="COMP2240">
-				Module:	<input type="text" name="module" value="6">
-				Year:	<input type="text" name="year" value="2012"><br><br>
-				
-			</div>
 			<div id="sex"> 
 				Sex:<br> <input type="checkbox" name="sex" value="male" id="male"><label for="male">M</label>
 						<input type="checkbox" name="sex" value="female" id="female"><label for="female">F</label>
@@ -65,18 +51,13 @@
 			</div>
 			<div class="clear"></div>
 		</div>
->>>>>>> Stashed changes
 		<?php 
 		// call the readme file that contains the questions
 		require_once 'readme.php';
-		//set the id for the question
-		$qid = "comp"; 
 		//traverse through the file and print the questions based on the number of questions
 		for($i = 0; $i < count($conarray); $i++){
-			//set the ratings input name
-			$ratings = "ratings";
+			$ratings = "ratings".$i;
 			?>
-			<!-- print each question in the given file --> 
 			<div class="question"> <?php echo $conarray[$i]; ?></div>
 			<div class="formers">  
 				<?php
@@ -84,7 +65,7 @@
 				
 				?>
 					<!-- display 5 checkbox, each has a different value which ranges from 1-5 while having the sanme name attribute -->
-					<input type="checkbox" name="<?php echo $ratings; ?>" value="<?php echo $a ?>" >
+					<input type="checkbox" name="<?php echo $ratings; ?>" value="<?php echo $a; ?>" >
 				<?php		
 				}		
 				?>

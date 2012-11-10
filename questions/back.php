@@ -4,16 +4,13 @@
 
 	
 require_once '../etc/connect.inc.php';
-$a = $_POST["ratings"];
-echo $a;
+
 	try{
-	
-		if(isset($_POST["ratings"])){		
-			
-			//list($rate, $quesid) = explode("-", $_POST["ratings"]);
+	echo $_POST["ratings"];
+		if(!empty($_POST["ratings"])){			
+			list($rate, $quesid) = explode("-", $_POST["ratings"]);
 			// update and increment the collected results of the each question based on the ratings results
 			for($i = 0; $i < 5; $i++){
-				
 				$ratings[$i] = $rate.$i;
 				//collect lecture id and the course code to determine the mysql select and insert function
 				$lect = $_POST['lect_id'];
