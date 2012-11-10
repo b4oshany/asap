@@ -1,4 +1,4 @@
-<?
+<?php
 ob_start();
 session_start();	
 //return true if the user is logged in

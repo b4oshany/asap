@@ -15,7 +15,7 @@ function logger($user, $pass){
 			?>
 			<!-- Alert the user of invalid credentials -->
 			<script type="text/javascript"> alert("Invalid user name and password");</script>
-			<?
+			<?php
 		}else{
 			//collect the user id			
 			$user_id = mysql_result($query_run, 0, 'id');
@@ -33,4 +33,6 @@ $pass = '32250170a0dca92d53ec9624f336ca24';
 $user = 'oshany';
 logger($user, $pass);
 */
+
+
 ?>

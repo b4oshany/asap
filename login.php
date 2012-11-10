@@ -1,4 +1,4 @@
-<? require_once 'etc/push.inc.php'; ?>
+<?php require_once 'etc/push.inc.php'; ?>
 <!doctype html>
 <html>
 <head>
@@ -10,8 +10,8 @@
 
 <body>
 
-<? $cur = $_SERVER['SCRIPT_NAME']; ?>
-<form action="<? echo $cur; ?>" method="post">
+<?php $cur = $_SERVER['SCRIPT_NAME']; ?>
+<form action="<?php echo $cur; ?>" method="post">
 	<fieldset id="form">
 		<legend>Sign Up</legend>
 		<div id="apDiv1">

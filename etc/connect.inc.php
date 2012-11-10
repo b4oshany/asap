@@ -1,4 +1,4 @@
-<?
+<?php
 $hoster = $_SERVER['HTTP_HOST'];
 
 //connect to the database
@@ -10,11 +10,11 @@ if($hoster === 'localhost'){
 	$mysql_pass = '';
 	
 	//set the database to use
-	$mysql_db = 'assess'; 
+	$mysql_db = 'asap'; 
 	
 }else{
 	
-	//privilige user for the database
+	// privilige user for the database
 	$mysql_user = '793226_oshany';
 	$mysql_pass = 'oshany2012';
 	
@@ -29,5 +29,7 @@ $con_error = 'could not connect';
 // attempt to establish database connection
 if(!@mysql_connect($mysql_host,$mysql_user,$mysql_pass) or !@mysql_select_db($mysql_db)){
 	die($con_error);
+}else{
+echo 'connected';
 }
 ?>
