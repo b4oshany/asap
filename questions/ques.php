@@ -30,36 +30,36 @@
 		<div id="ans">
 			<div id="lecturer"> 
 				Lecturer:  <select name="lect_id">
-								 <option selected value="620042528">Oshane Bailey</option>
-								 <option value="620032422">Vivienne</option>
-								 <option value="620032421">John Brown</option>
-								 <option value="620032122">Ok Math</option>
+								 <option required="required" selected required="required"  required="required"  value="620042528">Oshane Bailey</option>
+								 <option required="required" readonly required="required"  value="620032422">Vivienne</option>
+								 <option readonly required="required"  value="620032421">John Brown</option>
+								 <option readonly required="required"  value="620032122">Ok Math</option>
 							</select>
-				Course Code:	<input type="text" name="ccode" value="COMP2240">
-				Module:	<input type="text" name="module" value="6">
-				Year:	<input type="text" name="year" value="2012"><br><br>
+				Course Code:	<input readonly type="text" name="ccode" required="required"  value="COMP2240">
+				Module:	<input readonly type="text" name="module" required="required"  value="6">
+				Year:	<input readonly type="datetime" name="year" required="required"  value="2012"><br><br>
 				
 			</div>
 			<div id="sex"> 
-				Sex:<br> <input type="checkbox" name="sex" value="male" id="male"><label for="male">M</label>
-						<input type="checkbox" name="sex" value="female" id="female"><label for="female">F</label>
+				Sex:<br> <input type="checkbox" name="sex" required="required"  value="male" id="male"><label for="male">M</label>
+						<input  type="checkbox" name="sex" required="required"  value="female" id="female"><label for="female">F</label>
 			</div>
 			<div id="yos"> 
 				Years of Study:<br> 
-						<input type="checkbox" name="yos" value="1" ><label >1</label>
-						<input type="checkbox" name="yos" value="2" ><label >2</label>
-						<input type="checkbox" name="yos" value="3" ><label >3</label>
-						<input type="checkbox" name="yos" value="4" ><label >4</label>
+						<input type="checkbox" name="yos" required="required"  value="1" ><label >1</label>
+						<input type="checkbox" name="yos" required="required"  value="2" ><label >2</label>
+						<input type="checkbox" name="yos" required="required"  value="3" ><label >3</label>
+						<input type="checkbox" name="yos" required="required"  value="4" ><label >4</label>
 			</div>
 			<div id="age"> 
-				Age:<br> <input type="checkbox" name="age" value="young" id="young"><label for="young">18-25</label>
-						<input type="checkbox" name="age" value="midage" id="midage"><label for="midage">26-35</label>
-						<input type="checkbox" name="age" value="aged" id="aged"><label for="aged">36-55</label>
-						<input type="checkbox" name="age" value="oldage" id="oldage"><label for="oldage">46 & over</label>
+				Age:<br> <input type="checkbox" name="age" required="required"  value="young" id="young"><label for="young">18-25</label>
+						<input type="checkbox" name="age" required="required"  value="midage" id="midage"><label for="midage">26-35</label>
+						<input type="checkbox" name="age" required="required"  value="aged" id="aged"><label for="aged">36-55</label>
+						<input type="checkbox" name="age" required="required"  value="oldage" id="oldage"><label for="oldage">46 & over</label>
 			</div>
 			<div id="regs"> 
-				Registration Status:<br> <input type="checkbox" name="status" value="pt" id="pt"><label for="pt">P/T</label>
-						<input type="checkbox" name="status" value="ft" id="ft"><label for="ft">F/T</label>
+				Registration Status:<br> <input type="checkbox" name="status" required="required"  value="pt" id="pt"><label for="pt">P/T</label>
+						<input type="checkbox" name="status" required="required"  value="ft" id="ft"><label for="ft">F/T</label>
 			</div>
 			<div class="clear"></div>
 		</div>
@@ -82,8 +82,8 @@
 				for($a = 1; $a < 6; $a++){
 				
 				?>
-					<!-- display 5 checkbox, each has a different value which ranges from 1-5 while having the sanme name attribute -->
-					<input type="checkbox" name="<?php echo $ratings; ?>" value="<?php echo $a."-ques".$que."_".$qid ?>" >
+					<!-- display 5 checkbox, each has a different required="required"  value which ranges from 1-5 while having the sanme name attribute -->
+					<input type="checkbox" name="<?php echo $ratings; ?>" required="required"  value="<?php echo $a."-ques".$que."_".$qid ?>" >
 				<?php		
 				}		
 				?>
@@ -92,9 +92,9 @@
 		$count = $i + 1;
 		echo $count;
 		}
-		echo '<input type="text" name="count" value="'.$count.'" id="counter">';
+		echo '<input type="hidden" name="count" required="required"  value="'.$count.'" >';
 		?>
-			<input type="submit" value="submit">
+			<input type="submit" required="required"  value="submit">
 		</form>
 	</div>
 	

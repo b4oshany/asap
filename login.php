@@ -19,6 +19,7 @@
 			<label >Password</label>		
 			<input type="password" required name="password" id="pass" pattern="[a-zA-Z0-9]{5,20}"><br>
 			<input type="submit" value="Login">
+			<input type="reset" value="reset">
 		</div>
 	</fieldset>
 </form>
