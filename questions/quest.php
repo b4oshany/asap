@@ -16,7 +16,11 @@
 
 		<!-- Replace favicon.ico & apple-touch-icon.png in the root of your domain and delete these references -->
 		<link rel="shortcut icon" href="/favicon.ico" />
+<<<<<<< HEAD
+		<link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+=======
 		<link rel="apple -touch-icon" href="/apple-touch-icon.png" />
+>>>>>>> 284ccfafc52db7ef2e4094bb1d8a373c3c5683c8
 	</head>
 
 <body>
@@ -26,6 +30,10 @@
 	<div id"holder"> 
 		<!-- form creation using php for loop. Each question is echoed into a specific div along with its respective checkboxs
 		and posted to the collector that will store the information to the database -->		
+<<<<<<< HEAD
+		<form action="collector.php" method="post">
+		<div id="ans">
+=======
 		<form action="collecto.php" method="post">
 		<div id="ans">
 			<div id="lecturer"> 
@@ -40,6 +48,7 @@
 				Year:	<input type="text" name="year" value="2012"><br><br>
 				
 			</div>
+>>>>>>> 284ccfafc52db7ef2e4094bb1d8a373c3c5683c8
 			<div id="sex"> 
 				Sex:<br> <input type="checkbox" name="sex" value="male" id="male"><label for="male">M</label>
 						<input type="checkbox" name="sex" value="female" id="female"><label for="female">F</label>
@@ -66,6 +75,12 @@
 		<?php 
 		// call the readme file that contains the questions
 		require_once 'readme.php';
+<<<<<<< HEAD
+		//traverse through the file and print the questions based on the number of questions
+		for($i = 0; $i < count($conarray); $i++){
+			$ratings = "ratings".$i;
+			?>
+=======
 		//set the id for the question
 		$qid = "comp";
 		//traverse through the file and print the questions based on the number of questions
@@ -74,6 +89,7 @@
 			$ratings = "ratings".$i;
 			?>
 			<!-- print each question in the given file -->
+>>>>>>> 284ccfafc52db7ef2e4094bb1d8a373c3c5683c8
 			<div class="question"> <?php echo $conarray[$i]; ?></div>
 			<div class="formers">  
 				<?php
@@ -81,7 +97,11 @@
 				
 				?>
 					<!-- display 5 checkbox, each has a different value which ranges from 1-5 while having the sanme name attribute -->
+<<<<<<< HEAD
+					<input type="checkbox" name="<?php echo $ratings; ?>" value="<?php echo $a; ?>" >
+=======
 					<input type="checkbox" name="<?php echo $ratings; ?>" value="<?php echo $a."-ques".$i."_".$qid; ?>" >
+>>>>>>> 284ccfafc52db7ef2e4094bb1d8a373c3c5683c8
 				<?php		
 				}		
 				?>

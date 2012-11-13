@@ -4,11 +4,19 @@
 
 	
 require_once '../etc/connect.inc.php';
+<<<<<<< HEAD
+
+=======
+>>>>>>> 284ccfafc52db7ef2e4094bb1d8a373c3c5683c8
 	try{
 		for($i = 0; $i < 2; $i++){
 			if($_POST["ratings".$i]){
 				$ratings[$i] = $_POST["ratings".$i];
+<<<<<<< HEAD
+				//echo $ratings[$i];
+=======
 				echo $ratings[$i];
+>>>>>>> 284ccfafc52db7ef2e4094bb1d8a373c3c5683c8
 				if($ratings[$i] == 1){
 					$qresult = mysql_query("SELECT id, ratings_1 FROM ugrad_results");
 					while($results = mysql_fetch_array($qresult)){
