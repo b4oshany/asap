@@ -10,10 +10,8 @@ if($hoster === 'localhost'){
 	$mysql_pass = '';
 	
 	//set the database to use
-	$mysql_db = 'asap'; 
-	
-}else{
-	
+	$mysql_db = 'asap'; 	
+}else{	
 	// privilige user for the database
 	$mysql_user = '793226_oshany';
 	$mysql_pass = 'oshany2012';
@@ -21,7 +19,6 @@ if($hoster === 'localhost'){
 	//set the database to use
 	$mysql_db = 'inocreation_zxq_asap'; 	
 }
-
 
 //in case of database error display this
 $con_error = 'could not connect';
