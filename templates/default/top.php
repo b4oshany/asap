@@ -3,10 +3,10 @@
     <div id="comInfo">
 		<?php // print varibales to the banner
 			//$slogan = 'hey you'; $company = 'yoooooo';
-			require '../../config.inc.php';
-			require '../../css/assess.css'
+			//require_once '../../etc/config.inc.php';
+			//require_once '../../css/assess.css'
 		?>
-    	<h1><?php echo $company ?></h1>
-        <h2><?php echo $slogan ?></h2>
+    	<h1><?php //echo $company ?></h1>
+        <h2><?php //echo $slogan ?></h2>
      </div>
 </div>
