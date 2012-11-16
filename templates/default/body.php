@@ -7,6 +7,5 @@
 		<button type="button" onclick="menuClick('datav')">Data Visualization</button>
 		<button type="button" onclick="menuClick('help')">Help</button>
 </div>
-<div id="content">
-		
+<div id="content">	
 </div>

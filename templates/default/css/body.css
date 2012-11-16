@@ -1,17 +1,13 @@
 @charset "utf-8";
 #menubar{
 	border: 1px solid red;
-	height: 50px;
+	height: 50px;	
+}
+#display{
+border: 1px solid red;
+min-height: 600px;
 }
 
-#menubar ul {
-	list-style: none inside;
-	height: 50px;
-}
-#menubar ul li{
-	
-	display:inline;
-}
 
 button{
 	margin: 10px;
@@ -21,7 +17,7 @@ button{
 	background-image:url(../image/layouts/menu.png);
 	color:white;
 	font-weight:bold;
-	background-size:cover
+	background-size:cover;
 }
 	
 #content{
@@ -32,11 +28,8 @@ button{
 	min-height: 600px;
 	position: relative;
 	bottom: 15px;
-	z-index: -1;	
 }
 #sidebar{
 	border-right: 1px solid #aaa;
 	width: 300px;
-	min-height: inherit;
-	margin: 30px 20px;
-}
+	min-height: 600px;

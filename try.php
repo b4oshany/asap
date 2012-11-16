@@ -1,45 +1,38 @@
 <?php
+$q=$_GET["q"];
 
-class DataCon {
-	
-	//private $hoster = $_SERVER['HTTP_HOST'];
+$con = mysql_connect('localhost', 'root', '');
+if (!$con)
+  {
+  die('Could not connect: ' . mysql_error());
+  }
 
-	//connect to the database
-	//private $mysql_host = 'localhost';	
-	
-	public function __construct($db_host, $db_name, $db_user, $db_password){
-		if(!@mysql_connect($db_host,$db_user,$db_pass)){	
-			//if database is not connected then kill the page and echo could not connect
-			$con_error = 'could not connect';
-			die($con_error);			
-		}else{
-			echo $this->db_name;
-		}
-	}
-	public function db_rename(){
-		echo $this->db_name;
-	}
-	
-}
-$hoster = $_SERVER['HTTP_HOST'];
+mysql_select_db("asap", $con);
 
-//connect to the database
-if($hoster === 'localhost'){
-	//privilige user for the database
-	$mysql_user = 'root';
-	$mysql_pass = '';
-	
-	//set the database to use
-	$mysql_db = 'asap'; 	
-}else{	
-	// privilige user for the database
-	$mysql_user = '793226_oshany';
-	$mysql_pass = 'oshany2012';
-	
-	//set the database to use
-	$mysql_db = 'inocreation_zxq_asap'; 	
-}
+$sql="SELECT * FROM user WHERE id = '".$q."'";
 
-$o = new DataCon($hoster, $mysql_db, $mysql_user, $mysql_pass);
-echo $o->db_rename();
+$result = mysql_query($sql);
+
+echo "<table border='1'>
+<tr>
+<th>id</th>
+<th>ques_id</th>
+<th>lect_id</th>
+<th>ccode</th>
+<th>module</th>
+</tr>";
+
+while($row = mysql_fetch_array($result))
+  {
+  echo "<tr>";
+  echo "<td>" . $row['id'] . "</td>";
+  echo "<td>" . $row['ques_id'] . "</td>";
+  echo "<td>" . $row['lect_id'] . "</td>";
+  echo "<td>" . $row['ccode'] . "</td>";
+  echo "<td>" . $row['module'] . "</td>";
+  echo "</tr>";
+  }
+echo "</table>";
+
+mysql_close($con);
 ?>
