@@ -1,0 +1,16 @@
+ul {
+	text-decoration: none;
+	list-style: none;
+	}
+li {
+	padding: 5px 30px;
+	
+	}
+ul li button{
+	width: 200px;
+	padding: 10px 30px;
+	text-align: left;
+	}
+#datainfo, #tabsetup{
+	display: none;
+}

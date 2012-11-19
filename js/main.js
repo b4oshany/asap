@@ -1,21 +1,64 @@
 // JavaScript Document
 function menuClick(data)
 {
-x=document.getElementById("sidebar");  // Find the element
+	x=document.getElementById("content");  // Find the element
+	
 	switch (data){
 		case 'home':
+			//alert('home');
 			x.load("lol");    // Change the content
 			break;
 		case 'ques':
+			//alert('question');
 			x.innerHTML="oshane";    // Change the content
 			break;
 		case 'datav':
-			x.innerHTML="bailey";    // Change the content
+			//alert('datav');
+			x.innerHTML="bailey";    // Change the content			
 			break;
 		case 'help':
-			x.innerHTML="olando";    // Change the content
+			//alert('help');
+			x.innerHTML="olando";    // Change the content			
 			break;
-		}
+	}
+}
+
+function ulclick(menu){
+	switch (menu){
+		case 'sprofile':
+			x = document.getElementById("sinfo");
+			if(x.style.display.value != "none"){
+				x.style.display = "none";
+				document.getElementById("datainfo").style.display = "block";
+			}
+			break;
+		case 'sdatabase':
+			x = document.getElementById("datainfo");
+			if(x.style.display.value != "none"){
+				x.style.display = "none";
+				document.getElementById("tabsetup").style.display = "block";
+			}
+			break;
+		case 'stables':
+			x = document.getElementById("sinfo");
+			if(x.style.display.value != "none"){
+				x.style.display = "none";
+				document.getElementById("datainfo").style.display = "block";
+			}
+			break;
+		case 'slinktab':
+			alert('we');
+			break;
+		case 'iprofile':
+			alert('os');
+			break;
+		case 'configure':
+			alert('we');
+			break;
+		case 'finish':
+			alert('we');
+			break;
+	}
 }
 
 function showSelect(str, id)

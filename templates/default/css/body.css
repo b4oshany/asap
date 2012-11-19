@@ -2,10 +2,11 @@
 #menubar{
 	border: 1px solid red;
 	height: 50px;	
+	
 }
 #display{
-border: 1px solid red;
-min-height: 600px;
+	border: 1px solid red;
+	min-height: 600px;
 }
 
 
