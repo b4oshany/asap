@@ -1,0 +1,91 @@
+/*
+This file contains the interactivity or javascript function of the setup/installation page of asap, be careful in modifying it
+because this is where most of the files are sent to be created such as the connect.inc.php file.
+-- The dsiplay option of each installation step is control the showSelect and ulclick function
+--  the choData function is used to send the database information to the de_setup_check which will be used to create the database
+connection information as well as the information of site
+*/
+
+function ulclick(menu){
+	//checking the element id to determine which value to be shown after the save and continue button is pressed
+	switch (menu){
+		case 'sinfo':
+			x = document.getElementById("sinfo");
+			if(x.style.display.value != "none"){
+				x.style.display = "none";
+				document.getElementById("datainfo").style.display = "block";
+			}
+			break;
+		case 'sdatabase':
+			x = document.getElementById("datainfo");
+			if(x.style.display.value != "none"){
+				x.style.display = "none";
+				document.getElementById("sprofile").style.display = "block";
+			}
+			break;
+		case 'sprofile':
+			x = document.getElementById("sprofile");
+			if(x.style.display.value != "none"){
+				x.style.display = "none";
+				document.getElementById("installing").style.display = "block";
+			}
+			break;
+	}
+}
+
+//The below function is an ajax function, that is used to post data to a given file
+function choData(formname, formcnt)
+{	
+	//collect the form id and number of form elements in the form
+	formid = document.getElementById(formname);
+	formelements = x.getElementsByTagName("input");
+			
+	//y=x.getElementsByTagName("input")[formcnt].value;
+	
+	
+	//alert(formcnt);
+	if (window.XMLHttpRequest)
+	  {// code for IE7+, Firefox, Chrome, Opera, Safari
+	  xmlhttp=new XMLHttpRequest();
+	  //alert(formcnt);
+	  }
+	else
+	  {// code for IE6, IE5
+	  xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+	  //alert(formcnt);
+	  }
+	xmlhttp.onreadystatechange=function()
+	  {
+	  if (xmlhttp.readyState==4 && xmlhttp.status==200)
+		{//display the response information of the select.php in the given element id
+		document.getElementById('message').innerHTML=xmlhttp.responseText;
+		//alert(formcnt);
+		}
+	  }
+	//setting the parms default value to be posted and 
+	
+	params = 'formvalue= ';
+	for ($i = 0; $i < formcnt	; $i++){
+		if($i == 0){
+			params = params + formelements[$i].value;
+		}else{
+			params = params + "_" + formelements[$i].value;
+		}
+	}
+	//alert(formcnt);
+	//setting the file to post the values to, and how the values are handled
+	var s = "db_setup_check.php";
+	xmlhttp.open("POST",s,true);
+	xmlhttp.setRequestHeader('Content-type','application/x-www-form-urlencoded')
+	xmlhttp.send(params);
+	
+}
+//The function below is used to create the table set and its links
+function create_tb(){
+	x = document.getElementById("noTab").value;
+	crt_tabs = document.getElementById("tabs");
+	crt_tabs.innerHTML = "a";
+	
+}
+
+
