@@ -16,7 +16,7 @@ function ulclick(menu){
 				document.getElementById("datainfo").style.display = "block";
 			}
 			break;
-		case 'sdatabase':
+		case 'datainfo':
 			x = document.getElementById("datainfo");
 			if(x.style.display.value != "none"){
 				x.style.display = "none";
@@ -64,17 +64,13 @@ function choData(formname, formcnt)
 	  }
 	//setting the parms default value to be posted and 
 	
-	params = 'formvalue= ';
+	params = 'formvalue='+formname+'';
 	for ($i = 0; $i < formcnt	; $i++){
-		if($i == 0){
-			params = params + formelements[$i].value;
-		}else{
-			params = params + "_" + formelements[$i].value;
-		}
+		params = params + "_" + formelements[$i].value;
 	}
-	//alert(formcnt);
+	//alert(params);
 	//setting the file to post the values to, and how the values are handled
-	var s = "db_setup_check.php";
+	s = "db_setup_check.php";
 	xmlhttp.open("POST",s,true);
 	xmlhttp.setRequestHeader('Content-type','application/x-www-form-urlencoded')
 	xmlhttp.send(params);
@@ -86,6 +82,32 @@ function create_tb(){
 	crt_tabs = document.getElementById("tabs");
 	crt_tabs.innerHTML = "a";
 	
+}
+function showSelect(str, id)
+{
+	if (str=="")
+	  {
+		  document.getElementById("txtHint").innerHTML="";
+		  return;
+	  } 
+	if (window.XMLHttpRequest)
+		  {// code for IE7+, Firefox, Chrome, Opera, Safari
+		  xmlhttp=new XMLHttpRequest();
+	  }
+	else
+		  {// code for IE6, IE5
+		  xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+	  }
+	xmlhttp.onreadystatechange=function()
+	  {
+	  if (xmlhttp.readyState==4 && xmlhttp.status==200)
+		{
+			document.getElementById(id).innerHTML=xmlhttp.responseText;
+		}
+	  }
+	  var s = "select.php?q=";
+	xmlhttp.open("GET",s+str,true);
+	xmlhttp.send();
 }
 
 

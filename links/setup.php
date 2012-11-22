@@ -58,11 +58,12 @@ else the user will be prompted to procced to the home page by a finish button
 			</div>
 			<div class="row"><br>
 				<!-- procced to the next step when the button is pressed -->
-				<div class="cell position-5 width-7"><input onclick="ulclick('sdatabase'); choData('datainfo',3)" type="button" value="Save and Continue"></div>
+				<div class="cell position-5 width-7"><input onclick="ulclick('datainfo'); choData('datainfo',3)" type="button" value="Save and Continue"></div>
 			</div>
 		</form>
 		<!-- prompt the user to setup the site information  -->
-		<form id="sprofile"> 
+		<form id="sprofile">
+			<div id="message"></div>
 			<h1 class="ingd">Profile Setup Guide</h1>
 			<div class	="row">
 				<div class="cell position-0 width-5">Site Name</div>
@@ -75,14 +76,17 @@ else the user will be prompted to procced to the home page by a finish button
 			<div class="row"><br>
 				<div class="cell position-0 width-5">Slogan</div>
 				<div class="cell position-5 width-6"><input type="text" name="slogan"></div>
-			</div>
+			</div><!--
 			<div class="row"><br>
 				<div class="cell position-0 width-5">logo</div>
 				<div class="cell position-5 width-7"><input type="file" name="logo" formenctype="multipart/form-data"></div>
-			</div>
+			</div>-->
 			<div class="row"><br>
-				<div class="cell position-5 width-7"><input onclick="ulclick('sprofile'); choData('sinfo',4)" type="button" value="Continue to Setup"></div>
+				<div class="cell position-5 width-7"><input onclick="ulclick('sprofile'); choData('sprofile',3)" type="button" value="Continue to Setup"></div>
 			</div>
+		</form>
+		<form id="installing">
+			<div id="message"></div>
 		</form>
 	</div>
 </div>

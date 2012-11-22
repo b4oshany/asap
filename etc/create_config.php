@@ -1,5 +1,5 @@
 <?php
-function createConnection($mysql_user, $mysql_pass, $mysql_db, $db){
+function createConnectionFile($mysql_user, $mysql_pass, $mysql_db, $db){
 	if($db){
 			file_put_contents('../etc/connect.inc.php',
 '<?php
@@ -22,6 +22,21 @@ function createConnection($mysql_user, $mysql_pass, $mysql_db, $db){
 	}else{	
 		echo 'could not connect';
 	}
+}
+function createProfileFile($sname, $cname, $slogan){
+	file_put_contents('../etc/profile.inc.php',
+'<?php
+	//name of the site
+	$sname = \''.$sname.'\';
+	
+	//campany name
+	$cname = \''.$cname.'\';
+	
+	//slogo of the company
+	$slogan = \''.$slogan.'\'; 
+?>', 
+	LOCK_EX );
+
 
 }
 ?>
