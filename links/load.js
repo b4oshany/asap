@@ -39,6 +39,7 @@ function choData(formname, formcnt)
 	//collect the form id and number of form elements in the form
 	formid = document.getElementById(formname);
 	formelements = x.getElementsByTagName("input");
+	
 			
 	//y=x.getElementsByTagName("input")[formcnt].value;
 	
@@ -66,21 +67,24 @@ function choData(formname, formcnt)
 	
 	params = 'formvalue='+formname+'';
 	for ($i = 0; $i < formcnt	; $i++){
-		params = params + "_" + formelements[$i].value;
+		if(formelements[$i].value != ''){
+			params = params + "_" + formelements[$i].value;
+			if($i == (formcnt - 1)){
+				ulclick(formname);
+			}else{
+				alert('something went wrong');
+			}
+		}else{
+			alert('Please fill in all the required fills')
+		}
 	}
+	
 	//alert(params);
 	//setting the file to post the values to, and how the values are handled
 	s = "db_setup_check.php";
 	xmlhttp.open("POST",s,true);
 	xmlhttp.setRequestHeader('Content-type','application/x-www-form-urlencoded')
 	xmlhttp.send(params);
-	
-}
-//The function below is used to create the table set and its links
-function create_tb(){
-	x = document.getElementById("noTab").value;
-	crt_tabs = document.getElementById("tabs");
-	crt_tabs.innerHTML = "a";
 	
 }
 function showSelect(str, id)

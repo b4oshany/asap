@@ -58,7 +58,7 @@ else the user will be prompted to procced to the home page by a finish button
 			</div>
 			<div class="row"><br>
 				<!-- procced to the next step when the button is pressed -->
-				<div class="cell position-5 width-7"><input onclick="ulclick('datainfo'); choData('datainfo',3)" type="button" value="Save and Continue"></div>
+				<div class="cell position-5 width-7"><input onclick="choData('datainfo',3)" type="button" value="Save and Continue"></div>
 			</div>
 		</form>
 		<!-- prompt the user to setup the site information  -->

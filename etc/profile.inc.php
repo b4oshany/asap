@@ -1,10 +1,10 @@
 <?php
 	//name of the site
-	$sname = 'ASAP';
+	$sname = '';
 	
 	//campany name
-	$cname = 'UWI';
+	$cname = '';
 	
 	//slogo of the company
-	$slogan = 'students'; 
+	$slogan = ''; 
 ?>

@@ -1,10 +1,10 @@
 <?php
 	//privilige user for the database
-	$mysql_user = 'root';
+	$mysql_user = '';
 	$mysql_pass = '';
 	
 	//set the database to use
-	$mysql_db = 'asap'; 
+	$mysql_db = ''; 
 	
 	try{
 	# connect to the database
