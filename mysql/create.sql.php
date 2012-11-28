@@ -1,4 +1,5 @@
 <?php
+require_once '../etc/connect.inc.php';
 //create_table(table name, column);
 
 //campus -> id int(10), campus id varchar(15), campus name string(35), ratings int(100), date date
@@ -19,11 +20,28 @@
 //create_table for courses
 
 
-class dbManage {
-	function create($tb_name, $tb_col){	
-		$create = "create if not exist ".$tb_name."( ".$tb_col.") ";
+class Table extends DatabaseConnection{		
+	public function CreateTable(){
+		$connection = parent::connect();
+		$id = '4';
+		$user = "oshany"; $pass = md5("bailey");
+		$cols = 'id int(10), campus id varchar(15), campus name string(35), ratings int(100), date date';
+		$tab = 'campus';
+		//$sql = 'SELECT * FROM users  WHERE username = :user ';
+		//$sql = 'insert into users (username, passer) values(:user, :pass)';
+		$sql = 'create if not exist :tablename ( :cols )';
+		try{
+			$pquery = $connection->prepare($sql, array(PDO::ATTR_CURSOR => PDO::CURSOR_FWDONLY));
+			if($pquery->execute(array(':tablename' => $tab, ':cols' => $cols))){echo 'ok';}else{ echo 'not ok';}
+			
+		}catch(PDOException $e){
+			echo 'Errr '.$e->getMessage();
+		}
 	}
 }
 
+$lectq = 'FirstName varchar(15)';
+$lect = new Table;
+$lect->CreateTable();
 
 ?>

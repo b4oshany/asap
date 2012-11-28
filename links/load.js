@@ -38,8 +38,10 @@ function choData(formname, formcnt)
 {	
 	//collect the form id and number of form elements in the form
 	formid = document.getElementById(formname);
-	formelements = x.getElementsByTagName("input");
-	
+	formelements = formid.getElementsByTagName("input");
+	alert(formelements[0].value);
+	alert(formelements[1].value);
+	alert(formelements[2].value);
 			
 	//y=x.getElementsByTagName("input")[formcnt].value;
 	
@@ -67,13 +69,9 @@ function choData(formname, formcnt)
 	
 	params = 'formvalue='+formname+'';
 	for ($i = 0; $i < formcnt	; $i++){
-		if(formelements[$i].value != ''){
+		if((formelements[$i].value != '') || (formelements[(formcnt-1)].value == '')){
 			params = params + "_" + formelements[$i].value;
-			if($i == (formcnt - 1)){
-				ulclick(formname);
-			}else{
-				alert('something went wrong');
-			}
+			ulclick(formname);
 		}else{
 			alert('Please fill in all the required fills')
 		}
