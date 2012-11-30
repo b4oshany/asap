@@ -8,29 +8,33 @@
 		//set the database to use
 		private $mysql_db = 'asap'; 
 		
+		//set the throw error
 		const errr = '<br> An sql error has occured';
 		
+		//set the pdo db instance
+		protected $db = null;
+		
 		final public function __construct(){
+			$this->db = new PDO("mysql:dbname=".$this->mysql_db."", $this->mysql_user, $this->mysql_pass);
 			echo 'Attempting connection.........';
-			if($this->connect() !=true){
-				echo 'connection failed';
-			}else{
-				echo 'connected';
+			try{
+				if($this->connect() !=true){
+					echo 'connection failed';
+					$db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+				}else{
+					echo 'connected';
+				}
+			}catch(PDOException $e){
+				echo 'Errrr!: '.$e->getMessage();	
 			}
 		}
 		
 		final private function connect(){
-			try{
-				# connect to the database
-				if(!mysql_connect($_SERVER['HTTP_HOST'], $this->mysql_user, $this->mysql_pass)){
-					return false;
-				}else{
-					if(mysql_select_db($this->mysql_db)){
-						return true;
-					}
-				}
-			}catch (Exception $e){
-				echo 'Errrr!: '.$e->getMessage();	
+			# connect to the database
+			if($this->db){
+				return true;
+			}else{
+				return false;					
 			}
 		}
 	}

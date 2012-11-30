@@ -1,6 +1,6 @@
 <?php
 	
-	class DatabaseConnect{
+	class DatabaseConnect{		
 		//privilige user for the database
 		private $mysql_user = 'root';
 		private $mysql_pass = '';
@@ -8,45 +8,44 @@
 		//set the database to use
 		private $mysql_db = 'asap'; 
 		
-		const p = 'ok';
+		protected $db = null;
 		
-			public function __construct(){
-				echo 'Attemption connection....';
-				$this->connect();
-			}
+		const errr = '<br> An sql error has occured';
 		
-		final private function connect(){
+		final public function __construct(){
+			$this->db = new PDO("mysql:dbname=".$this->mysql_db."", $this->mysql_user, $this->mysql_pass);
+			echo 'Attempting connection.........';
 			try{
-				# connect to the database
-				if(!mysql_connect($_SERVER['HTTP_HOST'], $this->mysql_user, $this->mysql_pass)){
-					return false;
+				if($this->connect() !=true){
+					echo 'connection failed';
+					$db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 				}else{
-					if(mysql_select_db($this->mysql_db)){
-						echo 'ok';
-						return true;
-					}
+					echo 'connected<br>';
 				}
-			}catch (Exception $e){
+			}catch(PDOException $e){
 				echo 'Errrr!: '.$e->getMessage();	
 			}
 		}
-			
-	}
-	class A{
-		public function CreateTable($tablename, $cols){
-			try{
-				$sql = 'create table '.$tablename.' ('.$cols.' )';
-				if(!mysql_query($sql)){
-					throw new Exception(parent::errr);
-				}
-			}catch(Exception $e){
-				
+		
+		final private function connect(){
+			# connect to the database
+			if($this->db){
+				return true;
+			}else{
+				return false;					
 			}
-		}		
+		}
 	}
-	$a = new A;
-	$b = new DatabaseConnect;
-	$lectq = 'FirstName varchar(15)';
-	$b = $a->CreateTable('pesrrt', $lectq);
+	class bo extends DatabaseConnect{
+		public function a(){
+			$a = $this->db->query('select * from users');
+			while($row = $a->fetch()) {
+				print_r($row);
+			}			
+		}
+	}
+	$a = new bo;
+	$a->a();
+    
 	
 ?>

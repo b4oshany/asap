@@ -25,43 +25,38 @@ class Table extends DatabaseConnect{
 	public function CreateTable($tablename, $cols){
 		try{
 			$sql = 'create table '.$tablename.' ('.$cols.' )';
-			if(!mysql_query($sql)){
+			if(!$this->db->query($sql)){
 				throw new Exception(parent::errr);
 			}
 		}catch(Exception $e){
 			
 		}
 	}
-	public function SelectQuery($select_condition, $from_condition, $query_conition){
+	public function SelectQuery($select_condition, $from_condition, $query_condition){
 		try{
 			$sql = 'select '.$select_condition.' from '.$from_condition.' '.$query_condition.'';
-			$run_query = mysql_query($sql);
+			$run_query = $this->db->query($sql);
 			if(!$run_query){
 				throw new Exception(parent::errr);
 			}else{
+				echo 'ok';
 				return $run_query;
-				}
+			}
 		}catch(Exception $e){
 			echo $e->getMessage();
 		}		
 	}
-	public function ResultsQuery(){
-		while($row = mysql_fetch_array($run_query))
-		{		
-			echo $row['id'] . " " . $row['username'];
-			echo "<br />";
+	public function ResultsQuery($query){
+		while($row = $query->fetch(PDO::FETCH_ASSOC)) {
+			return;
 		}
 	}
 }
-
+/*
 $lectq = 'FirstName varchar(15)';
 $lect = new Table;
-//$lect->CreateTable('pes', $lectq);
-$row = $lect->SelectQuery();
-foreach ($row as $row2) {
-		echo $row2["id"];		
-	}
-	
-//$cols = 'id int(10), campus id varchar(15), campus name string(35), ratings int(100), date date';
-
+//$lect->CreateTable('pesss', $lectq);
+$query = $lect->SelectQuery('*', 'users', '');
+$lect->ResultsQuery($query);
+*/
 ?>
