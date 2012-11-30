@@ -20,28 +20,48 @@ require_once '../etc/connect.inc.php';
 //create_table for courses
 
 
-class Table extends DatabaseConnection{		
-	public function CreateTable(){
-		$connection = parent::connect();
-		$id = '4';
-		$user = "oshany"; $pass = md5("bailey");
-		$cols = 'id int(10), campus id varchar(15), campus name string(35), ratings int(100), date date';
-		$tab = 'campus';
-		//$sql = 'SELECT * FROM users  WHERE username = :user ';
-		//$sql = 'insert into users (username, passer) values(:user, :pass)';
-		$sql = 'create if not exist :tablename ( :cols )';
+class Table extends DatabaseConnect{		
+	
+	public function CreateTable($tablename, $cols){
 		try{
-			$pquery = $connection->prepare($sql, array(PDO::ATTR_CURSOR => PDO::CURSOR_FWDONLY));
-			if($pquery->execute(array(':tablename' => $tab, ':cols' => $cols))){echo 'ok';}else{ echo 'not ok';}
+			$sql = 'create table '.$tablename.' ('.$cols.' )';
+			if(!mysql_query($sql)){
+				throw new Exception(parent::errr);
+			}
+		}catch(Exception $e){
 			
-		}catch(PDOException $e){
-			echo 'Errr '.$e->getMessage();
+		}
+	}
+	public function SelectQuery($select_condition, $from_condition, $query_conition){
+		try{
+			$sql = 'select '.$select_condition.' from '.$from_condition.' '.$query_condition.'';
+			$run_query = mysql_query($sql);
+			if(!$run_query){
+				throw new Exception(parent::errr);
+			}else{
+				return $run_query;
+				}
+		}catch(Exception $e){
+			echo $e->getMessage();
+		}		
+	}
+	public function ResultsQuery(){
+		while($row = mysql_fetch_array($run_query))
+		{		
+			echo $row['id'] . " " . $row['username'];
+			echo "<br />";
 		}
 	}
 }
 
 $lectq = 'FirstName varchar(15)';
 $lect = new Table;
-$lect->CreateTable();
+//$lect->CreateTable('pes', $lectq);
+$row = $lect->SelectQuery();
+foreach ($row as $row2) {
+		echo $row2["id"];		
+	}
+	
+//$cols = 'id int(10), campus id varchar(15), campus name string(35), ratings int(100), date date';
 
 ?>

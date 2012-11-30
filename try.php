@@ -1,28 +1,52 @@
 <?php
-class people{
-	private $color = "";
 	
-	protected function displaycomplexion(){
-		return $this->color;
+	class DatabaseConnect{
+		//privilige user for the database
+		private $mysql_user = 'root';
+		private $mysql_pass = '';
+	
+		//set the database to use
+		private $mysql_db = 'asap'; 
+		
+		const p = 'ok';
+		
+			public function __construct(){
+				echo 'Attemption connection....';
+				$this->connect();
+			}
+		
+		final private function connect(){
+			try{
+				# connect to the database
+				if(!mysql_connect($_SERVER['HTTP_HOST'], $this->mysql_user, $this->mysql_pass)){
+					return false;
+				}else{
+					if(mysql_select_db($this->mysql_db)){
+						echo 'ok';
+						return true;
+					}
+				}
+			}catch (Exception $e){
+				echo 'Errrr!: '.$e->getMessage();	
+			}
+		}
+			
 	}
-	protected function setcomplexion($color){
-		$this->color = $color;
+	class A{
+		public function CreateTable($tablename, $cols){
+			try{
+				$sql = 'create table '.$tablename.' ('.$cols.' )';
+				if(!mysql_query($sql)){
+					throw new Exception(parent::errr);
+				}
+			}catch(Exception $e){
+				
+			}
+		}		
 	}
-}
-class jamaicans extends people{
-
-	public function type($color){
-		parent::setcomplexion($color);
-		$complexion = parent::displaycomplexion();
-		if($complexion == 'white'){
-			return 'White Jamaican';
-		}else if($complexion == 'black'){
-			return 'black Jamaican';
-		}else{ 'You are some what Jamaican';}		
-	}
-}
-$oshane = new jamaicans;
-echo $oshane->type('black');
-
-
+	$a = new A;
+	$b = new DatabaseConnect;
+	$lectq = 'FirstName varchar(15)';
+	$b = $a->CreateTable('pesrrt', $lectq);
+	
 ?>
