@@ -1,38 +1,52 @@
 <?php
-$q=$_GET["q"];
-
-$con = mysql_connect('localhost', 'root', '');
-if (!$con)
-  {
-  die('Could not connect: ' . mysql_error());
-  }
-
-mysql_select_db("asap", $con);
-
-$sql="SELECT * FROM user WHERE id = '".$q."'";
-
-$result = mysql_query($sql);
-
-echo "<table border='1'>
-<tr>
-<th>id</th>
-<th>ques_id</th>
-<th>lect_id</th>
-<th>ccode</th>
-<th>module</th>
-</tr>";
-
-while($row = mysql_fetch_array($result))
-  {
-  echo "<tr>";
-  echo "<td>" . $row['id'] . "</td>";
-  echo "<td>" . $row['ques_id'] . "</td>";
-  echo "<td>" . $row['lect_id'] . "</td>";
-  echo "<td>" . $row['ccode'] . "</td>";
-  echo "<td>" . $row['module'] . "</td>";
-  echo "</tr>";
-  }
-echo "</table>";
-
-mysql_close($con);
+	
+	class DatabaseConnect{
+		//privilige user for the database
+		private $mysql_user = 'root';
+		private $mysql_pass = '';
+	
+		//set the database to use
+		private $mysql_db = 'asap'; 
+		
+		const p = 'ok';
+		
+			public function __construct(){
+				echo 'Attemption connection....';
+				$this->connect();
+			}
+		
+		final private function connect(){
+			try{
+				# connect to the database
+				if(!mysql_connect($_SERVER['HTTP_HOST'], $this->mysql_user, $this->mysql_pass)){
+					return false;
+				}else{
+					if(mysql_select_db($this->mysql_db)){
+						echo 'ok';
+						return true;
+					}
+				}
+			}catch (Exception $e){
+				echo 'Errrr!: '.$e->getMessage();	
+			}
+		}
+			
+	}
+	class A{
+		public function CreateTable($tablename, $cols){
+			try{
+				$sql = 'create table '.$tablename.' ('.$cols.' )';
+				if(!mysql_query($sql)){
+					throw new Exception(parent::errr);
+				}
+			}catch(Exception $e){
+				
+			}
+		}		
+	}
+	$a = new A;
+	$b = new DatabaseConnect;
+	$lectq = 'FirstName varchar(15)';
+	$b = $a->CreateTable('pesrrt', $lectq);
+	
 ?>

@@ -26,8 +26,18 @@ function createConnectionFile($mysql_user, $mysql_pass, $mysql_db, $db){
 		final private function connect(){
 			try{
 				# connect to the database
+<<<<<<< HEAD
 				$db = new PDO("mysql:dbname=".$this->mysql_db, $this->mysql_user, $this->mysql_pass);
 				$db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+=======
+				if(!mysql_connect($_SERVER[\'HTTP_HOST\'], $this->mysql_user, $this->mysql_pass)){
+					return false;
+				}else{
+					if(mysql_select_db($this->mysql_db)){
+						return true;
+					}
+				}
+>>>>>>> furthertest
 			}catch (Exception $e){
 				echo \'Errrr!: \'.$e->getMessage();	
 			}
