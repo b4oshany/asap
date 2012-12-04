@@ -19,12 +19,17 @@ require_once '../etc/connect.inc.php';
 	
 //create_table for courses
 
-
-class Table extends DatabaseConnect{		
-	
+/* 
+Entending the table class to the databasbase connection to run the pdo connection to the server. As soon as the table class is instantiated 
+it calls the parent class, DatabaseConnect constructor to make the necessary connection to the database server
+*/
+class Table extends DatabaseConnect{
+	//The function below is used to create tables
+	//It takes in two variables, the table name and the columns' name with their properties to be run in the pdo query to create the table
 	public function CreateTable($tablename, $cols){
 		try{
 			$sql = 'create table '.$tablename.' ('.$cols.' )';
+			//Checking if the query ran successfully, if not then throw an exception
 			if(!$this->db->query($sql)){
 				throw new Exception(parent::errr);
 			}
@@ -32,10 +37,15 @@ class Table extends DatabaseConnect{
 			
 		}
 	}
+	
+	//This function is used to select the data from the table based on the condition,
+	//Joins, wheres, distinct and other sql functions can be used in the below function
+	// Joins and wheres should be placed into the query condition, while distinct and like should be placed in the form connection
 	public function SelectQuery($select_condition, $from_condition, $query_condition){
 		try{
 			$sql = 'select '.$select_condition.' from '.$from_condition.' '.$query_condition.'';
 			$run_query = $this->db->query($sql);
+			//Checking if the query ran successfully, if not then throw an exception
 			if(!$run_query){
 				throw new Exception(parent::errr);
 			}else{
@@ -46,17 +56,25 @@ class Table extends DatabaseConnect{
 			echo $e->getMessage();
 		}		
 	}
-	public function ResultsQuery($query){
+	//The function below is used to place table data into an array for easier extraction and display
+	public function ReturnArrayData($query){
+		$count = 0;
+		$data = array(); 
+		//Traverse through each row and place them into an associate array
 		while($row = $query->fetch(PDO::FETCH_ASSOC)) {
-			return;
+			$data[$count] = $row;
+			$count++;			
 		}
+		// Afterwards return the associate array for display or any other use
+		return $data;
 	}
 }
-/*
-$lectq = 'FirstName varchar(15)';
-$lect = new Table;
+
+//$lectq = 'FirstName varchar(15)';
+//$lect = new Table;
 //$lect->CreateTable('pesss', $lectq);
-$query = $lect->SelectQuery('*', 'users', '');
-$lect->ResultsQuery($query);
-*/
+//$query = $lect->SelectQuery('*', 'users', '');
+//$lect->ResultsQuery($query);
+//print_r($lect->ResultsQuery($query));
+
 ?>

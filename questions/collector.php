@@ -34,7 +34,7 @@ if(isset($_POST['count'])){
 				update($lect, $ccode, $year, $mod, $rate, $quesid, $select, $condition);
 			}else{ //if the question does not exist for the applied condition, then create it
 				//echo 'osha';
-				mysql_query("INSERT INTO `results` (`ques_id`, `ccode`, `lect_id`, `mod`, `date`, `sex`, `yos`, `age`, `regs`, `rate_".$rate."`) 
+				mysql_query("INSERT INTO `ugrad_results` (`ques_id`, `ccode`, `lect_id`, `mod`, `date`, `sex`, `yos`, `age`, `regs`, `rate_".$rate."`) 
 							VALUES ('".$quesid."', '".$ccode."', '".$lect."', ".$mod.", ".$year.",  '".$sex."', ".$yos.", '".$age."', '".$regs."', ".$rate.")");
 				//echo $quesid."', '".$ccode."', '".$lect."', ".$mod.", ".$year.",  '".$sex."', ".$yos.", '".$age."', '".$regs."', ".$rate;
 			}

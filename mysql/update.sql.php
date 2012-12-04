@@ -1,10 +1,9 @@
 <?php
-require_once '../etc/connect.inc.php';
-
+if(mysql_connect("localhost","asap","")){ echo 'ok';}else{ echo 'not ok';}
 function update($lecturer_id, $course_code, $year, $module, $rate, $quesid, $select, $condition){
 	try{
 		$rator = 'rate_';
-		//echo '<br>'.$rate.'<br>'.$quesid;								
+		echo '<br>'.$rate.'<br>'.$quesid;								
 		//check the number of times data is inputed
 		$check = 0;
 		// update and increment the collected results of the each question based on the ratings results
