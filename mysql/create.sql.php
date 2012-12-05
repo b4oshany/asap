@@ -68,11 +68,22 @@ class Table extends DatabaseConnect{
 		// Afterwards return the associate array for display or any other use
 		return $data;
 	}
+	
+	
+	//This function is used to select the data from the table based on the condition,
+	//Joins, wheres, distinct and other sql functions can be used in the below function
+	// Joins and wheres should be placed into the query condition, while distinct and like should be placed in the form connection
+	
+	
+	
+	
+	
+	
 }
 
 //$lectq = 'FirstName varchar(15)';
 //$lect = new Table;
-//$lect->CreateTable('pesss', $lectq);
+//$lect->InsertData('pesss', 'FirstName', '\'keya\'');
 //$query = $lect->SelectQuery('*', 'users', '');
 //$lect->ResultsQuery($query);
 //print_r($lect->ResultsQuery($query));
