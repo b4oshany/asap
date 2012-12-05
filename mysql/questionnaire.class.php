@@ -2,7 +2,6 @@
 require_once 'create.sql.php';
 
 class UgradQues extends Table{
-
 	public function InsertData($tablename, $rate, $values){
 		try{
 			$cols = 'ques_id, ccode, lect_id, module, date, sex, yos, age, regs, '.$rate.' ';

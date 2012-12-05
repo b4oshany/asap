@@ -33,8 +33,7 @@ if(isset($_POST['count'])){
 			$checkRow = count($uques->ReturnArrayData($uques->SelectQuery($select, $from_where, $condition)));
 			if ($checkRow > 0){ //if the question does exist then make the change
 				$uques->UpdateData($from_where, $rate, $quesid, $condition);
-			}else{ //if the question does not exist for the applied condition, then create it
-				//echo 'osha';				
+			}else{ //if the question does not exist for the applied condition, then add to table				//echo 'osha';				
 				$values = "'".$quesid."', '".$ccode."', '".$lect."', ".$mod.", ".$year.",  '".$sex."', ".$yos.", '".$age."', '".$regs."', 1";
 				$uques->InsertData($from_where, $rator, $values);
 			}

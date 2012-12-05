@@ -8,5 +8,4 @@
 		<button type="button" onclick="menuClick('help')">Help</button>
 </div>
 <div id="content">	
-saasd
 </div>

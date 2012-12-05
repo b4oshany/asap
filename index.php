@@ -15,15 +15,15 @@
 <div id="wrapper">
 <?php 
 //check if the user is logged in
-if(logedin()){
+//if(logedin()){
 	//if the user is logged in the display the front or the index page 
 	include ('templates/'.$template.'/top.php');
 	include ('templates/'.$template.'/body.php');
 	
-}else{
+//}else{
 	// else redirect the user to the login page
-	header('location: login.php');
-}
+	//header('location: login.php');
+//}
 ?>
 </div>
 </body>

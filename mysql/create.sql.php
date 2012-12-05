@@ -11,7 +11,7 @@ require_once '../etc/connect.inc.php';
 //lecturer -> id int(10), lecturer id varchar(15), department id varchar(15), lecturer name string(35), ratings int(100), date date
 
 //courses -> id int(10), course code varchar(15), course name string(35), department id varchar (15), lecturer id varchar(15)
-	//ratings int(100), date date
+	//ratings int(100), date date	
 
 //results -> id int(10), question id varchar(15), course code varchar(15), lecturer name string(35), module int(10), date date, 
 	// sex string(2), year of study date, age int(10),  registration status varchar(5), ratings 1 int(100), ratings 2 int(100),
@@ -34,7 +34,7 @@ class Table extends DatabaseConnect{
 				throw new Exception(parent::errr);
 			}
 		}catch(Exception $e){
-			
+			echo $e->getMessage();
 		}
 	}
 	
