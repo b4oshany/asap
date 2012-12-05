@@ -56,6 +56,28 @@ class Table extends DatabaseConnect{
 			echo $e->getMessage();
 		}		
 	}
+	
+	public function NumRowExists($from_condition, $query_condition){
+		try{
+			$sql = 'select * from '.$from_condition.' '.$query_condition.'';
+			echo '<br>'.$sql;
+			$run_query = $this->db->query($sql);
+			//Checking if the query ran successfully, if not then throw an exception
+			if(!$run_query){
+				throw new Exception(parent::errr);
+			}else{/*
+				if(count($run_query) > 0){
+					return true;
+				}else{
+					return false;
+				}*/
+				return count($run_query);
+			}
+		}catch(Exception $e){
+			echo $e->getMessage();
+		}		
+	}
+	
 	//The function below is used to place table data into an array for easier extraction and display
 	public function ReturnArrayData($query){
 		$count = 0;
@@ -84,8 +106,8 @@ class Table extends DatabaseConnect{
 //$lectq = 'FirstName varchar(15)';
 //$lect = new Table;
 //$lect->InsertData('pesss', 'FirstName', '\'keya\'');
-//$query = $lect->SelectQuery('*', 'users', '');
-//$lect->ResultsQuery($query);
-//print_r($lect->ResultsQuery($query));
+//$query = $lect->SelectQuery('*', 'os', 'where b =2');
+//echo $query;
+//print_r(count($lect->ReturnArrayData($query)));
 
 ?>

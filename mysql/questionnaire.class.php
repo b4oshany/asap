@@ -5,9 +5,12 @@ class UgradQues extends Table{
 
 	public function InsertData($tablename, $rate, $values){
 		try{
-			$cols = 'ques_id, ccode, lect_id, mod, date, sex, yos, age, regs, '.$rate.' ';
+			$cols = 'ques_id, ccode, lect_id, module, date, sex, yos, age, regs, '.$rate.' ';
 			$sql = 'insert into '.$tablename.'('.$cols.') values('.$values.')';
-			echo $sql;
+			
+			//INSERT into `ugrad_results` () 
+			//values('ques1_comp', 'COMP2240', '620042528', 4,  2012, 'male', 1, 'young', 'pt', 2)
+			echo '<br>'.$sql;
 			$run_query = $this->db->query($sql);
 			//Checking if the query ran successfully, if not then throw an exception
 			if(!$run_query){
