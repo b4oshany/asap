@@ -107,7 +107,8 @@ function showSelect(str, id)
 			document.getElementById(id).innerHTML=xmlhttp.responseText;
 		}
 	  }
-	  var s = "select.php?q=";
+	 // var s = "select.php?q=";
+	  var s = "../../links/select.php?q=";
 	xmlhttp.open("GET",s+str,true);
 	xmlhttp.send();
 }

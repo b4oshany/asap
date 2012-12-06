@@ -1,4 +1,5 @@
 <?php include 'home.php'; ?>
+<link type="text/css" rel="stylesheet" href="css/deco.css">
 <div id="body">
 	<div class="row">
 		<div class="cell position-13 width-3 time">
@@ -6,8 +7,8 @@
 		</div>
 	</div>
 	<div class="row" >	
-		<div class="cell position-0 width-16" id="top-stories" >
-			<?php ; ?>
+		<div class="cell position-0 width-16" id="content" >
+			<?php ; include '../../links/datav.php'; ?>
 		</div>
 	</div>
 	<div class="row" >	

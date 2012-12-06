@@ -1,6 +1,5 @@
-<link type="text/css" rel="stylesheet" href="../templates/default/css/body.css">
-<link type="text/css" rel="stylesheet" href="../css/decogrids-12.css">
 <script type="text/javascript" src="load.js"></script>
+<script type="text/javascript" src="../../links/load.js"></script>
 <div class="row">
 	<div class ="cell width-4 position-0" id="sidebar">
 		<div class="row" >
@@ -17,7 +16,6 @@
 			</div>
 		</div>
 	</div>
-	<div class ="cell width-8 position-4" id="display">
-		
+	<div class ="cell width-12 position-4" id="display">		
 	</div>
 </div>

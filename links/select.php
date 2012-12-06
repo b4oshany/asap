@@ -9,7 +9,7 @@ if (!$con)
 
 mysql_select_db("asap", $con);
 
-$sql="SELECT * FROM ugrad_courses WHERE ccode = '".$q."' ";
+$sql="SELECT * FROM ugrad_results WHERE ccode = '".$q."' ";
 
 $result = mysql_query($sql);
 
