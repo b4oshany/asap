@@ -22,7 +22,10 @@
 #ans{
 	width: 960px;
 	margin-bottom: 40px;
+<<<<<<< HEAD
 
+=======
+>>>>>>> dev
 	}
 #yos{
 	width: 250px;
@@ -42,6 +45,11 @@
 	}
 .formers, .question{
 	margin-top: 10px;
+	}
+input[type = text]{
+	border: none;
+	font-weight: bold;
+	margin-right: 10px;
 	}
 h1, h2{
 	text-align: center;

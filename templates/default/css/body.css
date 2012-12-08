@@ -1,0 +1,36 @@
+@charset "utf-8";
+#menubar{
+	border: 1px solid red;
+	height: 50px;	
+	
+}
+#display{
+	border: 1px solid red;
+	min-height: 600px;
+}
+
+
+button{
+	margin: 10px;
+	padding: 8px 15px;
+	border: 1px solid black;
+	border-radius: 10px;
+	background-image:url(../image/layouts/menu.png);
+	color:white;
+	font-weight:bold;
+	background-size:cover;
+}
+	
+#content{
+	background:url(../image/layouts/bg.jpg) repeat;
+	border: 1px solid #aaa;
+	border-radius: 20px;
+	width: 960px;
+	min-height: 600px;
+	position: relative;
+	bottom: 15px;
+}
+#sidebar{
+	border-right: 1px solid #aaa;
+	width: 300px;
+	min-height: 600px;
