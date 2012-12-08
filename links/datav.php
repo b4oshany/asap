@@ -17,6 +17,8 @@
 		</div>
 	</div>
 	<div class ="cell width-12 position-4" id="display">
-		
+		<?php
+			
+		?>
 	</div>
 </div>

@@ -14,7 +14,7 @@
 		//set the pdo db instance
 		protected $db = null;
 		
-		final public function __construct(){
+		public function __construct(){
 			$this->db = new PDO("mysql:dbname=".$this->mysql_db."", $this->mysql_user, $this->mysql_pass);
 			echo 'Attempting connection.........';
 			try{

@@ -95,13 +95,8 @@ class Table extends DatabaseConnect{
 	//This function is used to select the data from the table based on the condition,
 	//Joins, wheres, distinct and other sql functions can be used in the below function
 	// Joins and wheres should be placed into the query condition, while distinct and like should be placed in the form connection
-	
-	
-	
-	
-	
-	
 }
+
 
 //$lectq = 'FirstName varchar(15)';
 //$lect = new Table;
@@ -109,5 +104,6 @@ class Table extends DatabaseConnect{
 //$query = $lect->SelectQuery('*', 'os', 'where b =2');
 //echo $query;
 //print_r(count($lect->ReturnArrayData($query)));
+
 
 ?>
