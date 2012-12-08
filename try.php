@@ -1,18 +1,7 @@
 <?php
 	
-	class a {
-		public $a = '1';
-	}
-	class b {
-		public $b = '11';
-	}
-	class c extends a with b {
-		public $c = '12';
-	}
-
-	$g = new c;
-	echo $g->a.'<br>';
-	echo $g->c.'<br>';
-	echo $g->b.'<br>';
+mysql> select id, fac_id, fac_name, orate, date_format(date(date), '%b %Y') as d
+ate from faculties where (fac_id = 'fh' or fac_id = 'fms') and date < curdate()
+and date > date_sub(curdate(), interval 2 year) order by fac_id;
 	
 ?>

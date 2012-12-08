@@ -24,8 +24,9 @@ Class DataVisualization{
 		}		
 		echo '</table>';		
 	}
+
 	
-	public function LineGraph($datavalue){
+	public function LineGraph($title, $datavalue){
 	?>
     <script type="text/javascript">
       google.load("visualization", "1", {packages:["corechart"]});
@@ -36,7 +37,7 @@ Class DataVisualization{
         ]);	
 
         var options = {
-          title: 'Company Performance',
+          title:<?php echo '\''.$title.'\''; ?>,
 		curveType:"function",
 		  pointSize: 5,
         };
@@ -50,7 +51,7 @@ Class DataVisualization{
 	
 	}
 	
-	public function BarGraph($datavalue){
+	public function BarGraph($title, $datavalue){
 	echo 'oshj';
 	?>
 	<script type="text/javascript">
@@ -62,7 +63,7 @@ Class DataVisualization{
         ]);
 
         var options = {
-          title: 'Company Performance',
+          title:<?php echo '\''.$title.'\''; ?>,
           vAxis: {title: 'Year',  titleTextStyle: {color: 'red'}}
         };
         var chart = new google.visualization.BarChart(document.getElementById('chart_div'));
@@ -72,7 +73,7 @@ Class DataVisualization{
 
 	<?php
 	}
-	public function PieGraph($datavalue){
+	public function PieGraph($title, $datavalue){
 	?>
 	<script type="text/javascript">
       google.load("visualization", "1", {packages:["corechart"]});
@@ -83,7 +84,7 @@ Class DataVisualization{
         ]);
 
         var options = {
-          title: 'My Daily Activities'
+          title:<?php echo '\''.$title.'\''; ?>
         };
 
         var chart = new google.visualization.PieChart(document.getElementById('chart_div'));
@@ -92,7 +93,7 @@ Class DataVisualization{
 	
 	<?php
 	}
-	public function ColumnGraph($datavalue){
+	public function ColumnGraph($title, $datavalue){
 	echo 'oshj';
 	?>
 	<script type="text/javascript">
@@ -104,7 +105,7 @@ Class DataVisualization{
         ]);
 
         var options = {
-          title: 'Company Performance',
+          title:<?php echo '\''.$title.'\''; ?>,
           vAxis: {title: 'Year',  titleTextStyle: {color: 'red'}}
         };
 
@@ -116,7 +117,7 @@ Class DataVisualization{
 	<?php
 	}
 	
-	public function SteppedGraph($datavalue){
+	public function SteppedGraph($title, $datavalue){
 	echo 'oshj';
 	?>
 	 <script type="text/javascript">
@@ -130,7 +131,7 @@ Class DataVisualization{
       
         var options = {
           width: 600, height: 400,
-          title: 'The decline of \'The 39 Steps\'',
+          title:<?php echo '\''.$title.'\''; ?>,
           vAxis: {title: 'Accumulated Rating'},
           isStacked: true
         };

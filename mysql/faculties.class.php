@@ -5,24 +5,41 @@ class Faculty extends Table{
 	public $hArray, $hdata;
 	public $select =  "date_format(date(date), '%b %Y') as date, orate";
 	public $from = "faculties";
-	public $condition = "where fac_id='fh'";
 	public function __construct(){
 		parent::__construct();
 		$this->hArray = array();
-		$this->data = "['Date', 'Performance Ratings']";
 		$this->heading = '<th>Overall Ratings</th><th>Date</th>';
+	}
+	public function setGraphHeading($heading){
+		$this->data = $heading;
+		return $this->data;
 	}
 	public function setSqlOut($sql){
 		$this->display = $sql;
 		return $this->display;
 	}
 	public function setArrayDataOut($array){
-		$this->hArray = $array;
+		$fhArray, $flArray, $fmsArray, $fssArray, $fsatArray = array();
+		for($i=0; $i < count($array); $i++){
+			switch(($array{$i}['fac_id'])){
+				case 'fh':
+					break;
+				case 'fl':
+					break;
+				case 'fss':
+					break;
+				case 'fms':
+					break;
+				case 'fsat':
+					break;
+			}
+		}
+		//$this->hArray = $array;
 		//$this->hArray = $this->ReturnArrayData($array);
 		//print_r($this->hArray);
-		return $this->hArray;
+		//return $this->hArray;
 	}
-
+	
 	public function SingleFacultyGraph(){
 		echo '<br>';
 		//$a = $thisties->ReturnArrayData($display)));	

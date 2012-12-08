@@ -44,12 +44,14 @@ class Table extends DatabaseConnect{
 	public function SelectQuery($select_condition, $from_condition, $query_condition){
 		try{
 			$sql = 'select '.$select_condition.' from '.$from_condition.' '.$query_condition.'';
+			//echo '<br>'.$sql.'<br>';
 			$run_query = $this->db->query($sql);
 			//Checking if the query ran successfully, if not then throw an exception
 			if(!$run_query){
 				throw new Exception(parent::errr);
 			}else{
 				echo 'ok';
+				//print_r($run_query);
 				return $run_query;
 			}
 		}catch(Exception $e){
