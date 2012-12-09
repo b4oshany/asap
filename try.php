@@ -1,7 +1,6 @@
 <?php
 	
-mysql> select id, fac_id, fac_name, orate, date_format(date(date), '%b %Y') as d
-ate from faculties where (fac_id = 'fh' or fac_id = 'fms') and date < curdate()
-and date > date_sub(curdate(), interval 2 year) order by fac_id;
-	
+$a = array('fh' => 2, 'fms'=> 1 );
+print_r(array_count_values($a));
+echo '<br>'.max(array_count_values($a));
 ?>

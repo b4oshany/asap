@@ -17,8 +17,8 @@ $sqlResults = $humanities->SelectQuery($select, $from, $condition);
 $display = $humanities->setSqlOut($sqlResults);
 $dArray = $humanities->ReturnArrayData($display);
 echo '<br>';
-//print_r($dArray);
-echo $humanities->setArrayDataOut($dArray);
+print_r($dArray);
+$humanities->setArrayDataOut($dArray);
 //$array = $humanities->setArrayDataOut($dArray);
 echo '<br>';
 
