@@ -2,10 +2,7 @@
 require_once 'table.class.php';
 class Faculty extends Table{
 	private $display, $heading,  $data;
-	public $hArray, $hdata;
-	public $select =  "date_format(date(date), '%b %Y') as date, orate";
-	public $from = "faculties";
-	public $condition = "where fac_id='fh'";
+	public $hArray, $hdata, $select, $from, $condition;
 	public function __construct(){
 		parent::__construct();
 		$this->hArray = array();
@@ -17,11 +14,86 @@ class Faculty extends Table{
 		return $this->display;
 	}
 	public function setArrayDataOut($array){
-		$this->hArray = $array;
+		$hcount = 0;
+		$sscount = 0;
+		$mscount = 0;
+		$satcount = 0;
+		$lcount = 0;
+		$datecount = 0;
+		$adate = array();
+		$ft = array();
+		$count = 0;
+		
+		foreach($array as $fac){
+			$ft[$count] = $fac['date'];			
+			$count++;
+		}
+		//print_r($ft);
+		$keys = array_keys(array_count_values($ft));
+		//print_r($keys);
+		
+		foreach($array as $row){
+			switch($row['fac_id']){
+				case 'fh';
+					foreach($keys as $date){	
+						if($date == $row['date']){
+							$farray[$hcount][0] = $date;
+							$farray[$hcount][1] = $row['orate'];
+							$hcount++;
+						}
+					}
+					break;
+				case 'fss':
+					foreach($keys as $date){	
+						if($date == $row['date']){
+							$farray[$sscount][0] = $date;
+							$farray[$sscount][2] = $row['orate'];
+							$sscount++;
+						}
+					}
+					break;
+				case 'fsat':
+					foreach($keys as $date){	
+						if($date == $row['date']){
+							$farray[$satcount][0] = $date;
+							$farray[$satcount][3] = $row['orate'];
+							$satcount++;
+						}
+					}
+				case 'fms':
+					foreach($keys as $date){	
+						if($date == $row['date']){
+							$farray[$mscount][0] = $date;
+							$farray[$mscount][4] = $row['orate'];
+							$mscount++;
+						}
+					}
+					break;
+				case 'fl':
+					foreach($keys as $date){	
+						if($date == $row['date']){
+							$farray[$lcount][0] = $date;
+							$farray[$lcount][5] = $row['orate'];
+							$lcount++;
+						}
+					}
+					break;
+			}
+			//echo '<br>';
+			//print_r($row);	
+			//echo '<br>';
+			//$datecount++;
+		}
+		$this->hArray = $farray;
+		
+		
+		//$this->hArray = $array;
 		//$this->hArray = $this->ReturnArrayData($array);
 		//print_r($this->hArray);
+		
+		
 		return $this->hArray;
-	}
+	}	
 
 	public function SingleFacultyGraph(){
 		echo '<br>';
@@ -53,8 +125,7 @@ class Faculty extends Table{
 					//echo $visdataMidDeep.'<br>';
 					$count += 1;
 				}else{
-					$visdataMidDeep .= ''.$value.','; 
-					$count = 0;
+					$visdataMidDeep .= ''.$value.','; 					
 				}
 			}
 			$visdataMid .= trim($visdataMidDeep, ',').'],';	
