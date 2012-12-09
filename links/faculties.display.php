@@ -11,7 +11,7 @@ $humanities->condition = "";
 $sqlResults = $humanities->SelectQuery($humanities->select, $humanities->from, $humanities->condition); 
 $display = $humanities->setSqlOut($sqlResults);
 $array = $humanities->setArrayDataOut($humanities->ReturnArrayData($display));
-echo '<br>';
+echo '<br> ';
 print_r($array);
 echo '<br>';
 $hdata = $humanities->SingleFacultyGraph();
