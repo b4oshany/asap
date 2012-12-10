@@ -40,6 +40,10 @@ Class DataVisualization{
           title:<?php echo '\''.$title.'\''; ?>,
 		curveType:"function",
 		  pointSize: 5,
+		  animation:{
+			duration: 1000,
+			easing: 'out'
+			},
         };
 		
 

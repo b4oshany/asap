@@ -1,5 +1,6 @@
 <?php
 <<<<<<< HEAD
+<<<<<<< HEAD
 	
 $a = array('fh' => 2, 'fms'=> 1 );
 print_r(array_count_values($a));
@@ -20,6 +21,11 @@ foreach($aa as $row){
 		
 	}
 }
+=======
+$a = 'Oshane Bailey';
+echo strspn($a,"a").'<br>';
+echo strcspn($a,"a",0,);
+>>>>>>> moretest
 	
 >>>>>>> moretest
 ?>

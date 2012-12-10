@@ -80,6 +80,26 @@ class Table extends DatabaseConnect{
 		}		
 	}
 	
+	public function RowExists($from_condition, $query_condition){
+		try{
+			$sql = 'select * from '.$from_condition.' '.$query_condition.'';
+			//echo '<br>'.$sql;
+			$run_query = $this->db->query($sql);
+			//Checking if the query ran successfully, if not then throw an exception
+			if(!$run_query){
+				throw new Exception(parent::errr);
+			}else{
+				if(count($run_query) > 0){
+					return true;
+				}else{
+					return false;
+				}
+			}
+		}catch(Exception $e){
+			echo $e->getMessage();
+		}		
+	}
+	
 	//The function below is used to place table data into an array for easier extraction and display
 	public function ReturnArrayData($query){
 		$count = 0;
