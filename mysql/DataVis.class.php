@@ -39,6 +39,10 @@ Class DataVisualization{
           title: 'Company Performance',
 		curveType:"function",
 		  pointSize: 5,
+		  animation:{
+			duration: 1000,
+			easing: 'out'
+			},
         };
 		
 
