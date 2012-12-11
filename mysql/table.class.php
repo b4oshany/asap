@@ -45,6 +45,7 @@ class Table extends DatabaseConnect{
 		try{
 			$sql = 'select '.$select_condition.' from '.$from_condition.' '.$query_condition.'';
 			$run_query = $this->db->query($sql);
+			echo $sql;
 			//Checking if the query ran successfully, if not then throw an exception
 			if(!$run_query){
 				throw new Exception(parent::errr);
@@ -71,6 +72,7 @@ class Table extends DatabaseConnect{
 				}else{
 					return false;
 				}*/
+				echo count($run_query);
 				return count($run_query);
 			}
 		}catch(Exception $e){

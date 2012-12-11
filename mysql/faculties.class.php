@@ -204,118 +204,168 @@ class Faculty extends Table{
 		///print($visdata);
 		return $visdata; //return the graph data
 	}	
-}
-class Department extends Faculty{
-
-}
-class Course extends Department{
-	public function __construct(){
-		parent::__construct(); //Call the parent construct with its methods and varibales;
-		echo '<br> ---- ok ---  <br>';
-		$this->calcRatings(); //As sson as the class is initiated the course will be rated
-		echo '<br> ---- ok ---  <br>';
 	
-	}
-	private function calcRatings(){
-		$sRates = $this->SelectQuery(
-			't1.ques_id, t1.ccode, t1.rate_1, t1.rate_2, t1.rate_3, t1.rate_4, t1.rate_5, t2.fac_id',
-			'ugrad_results as t1 join ugrad_courses as t2 on',
-			't1.ccode = t2.ccode'); //collecting the course id and faculty id for database injection
+	protected function calcRatings($select, $id1,$id2){
+		$sRates = $select;
+		 //collecting the course id and faculty id for database injection
 		$aRates = $this->ReturnArrayData($sRates); //collect the course id, faculty id and ratings of each question
 		//$sQids = $this->SelectQuery('ccode, fac_id','ugrad_courses',''); //collecting the course id and faculty id for database injection
 		$rqtrate = array(); //ratings for each question type
 		$rqrate = array(); //ratings for each question
 		$qkeys = array_keys($aRates[0]); // collect all of the rating keys
+		//print_r($aRates);
+		$orate = array();
+		$acount = 0;
 		$keys = array();
 		$count = 0; //counter set for number of coulns
 		$counter = 0; //counter set for the number of questions
+		//Get the keys and store it in an array
 		foreach($qkeys as $key){
 			if(substr($key, 0, 5) == 'rate_'){
 				$keys[$count] = $key;
 				$count++;
 			}
 		}
-		$qsum = 0; //set to check the number of questions
+		//Get the dates and store it in an array
+		$cdate = 0; //count the number of dates;
+		$dates = array();
+		foreach($aRates as $date){
+			$dates[$cdate] = $date['date'];
+			$cdate++;
+		}
+		//remove all duplicate dates
+		$dates = array_unique($dates);
+		//print_r($dates);
+		$qsum = array(); //set to check the number of questions
 		foreach($aRates as $rate){
-			if( (substr($rate['ques_id'],0,3) == 'lec')){ 
-				$qsum ++;
-				//echo '<br> ---- rate ---  <br>';
-				//print_r($rate);
-				//print_r($keys);
-				//echo '<br> ---- rate ---  <br>';
-				$prate = 0; //percentage value of ratings
-				$aVal = array(); //array value for ratings that is greater than 0
-				for($i=1; $i <= 5; $i++){
-					$aVal[$i] = $rate[('rate_'.$i)]; //collecting ratings that are greater than 0
-					//$aVal = array_push($aVal));			
-				}
-				//this is used to filter an array based on a class function
-				$tRate = array_filter($aVal, array(&$this, "filterValue"));
-				//$count = count($tRate);
-				$asum = array_sum($tRate); //total sum of sample
-				$qrate = array(); //ratings for each question
-				//echo '<br> ---- rooovalue ---  <br>';
-				//print_r($tRate);
-				//echo '<br> ---- rsssvalue ---  <br>';
-				
-				//echo '<br> ----  sum  ---  <br>';
-				//print_r($asum);
-				//echo '<br> ---- sum---  <br>';
-			
-				for($a=1; $a <= 5; $a++){			
-					switch($keys[($a-1)]){
-						case 'rate_1':
-							$prate = 2; //rating 1 is rated 10
-							$qrate[($a-1)] = ($rate['rate_1']/$asum)*$prate; //set rate 1 percentage out of 10 
-
-							break;
-						case 'rate_2':
-							$prate = 4; //rating 1 is rated 10
-							$qrate[($a-1)] = ($rate['rate_2']/$asum)*$prate; //set rate 1 percentage out of 10 
-
-							break;
-						case 'rate_3':
-							$prate = 6; //rating 1 is rated 10
-							$qrate[($a-1)] = ($rate['rate_3']/$asum)*$prate; //set rate 1 percentage out of 10 
-
-							break;
-						case 'rate_4':
-							$prate = 8; //rating 1 is rated 10
-							$qrate[($a-1)] = ($rate['rate_4']/$asum)*$prate; //set rate 1 percentage out of 10 
-
-							break;
-						case 'rate_5':
-							$prate = 10; //rating 1 is rated 10
-							$qrate[($a-1)] = ($rate['rate_5']/$asum)*$prate; //set rate 1 percentage out of 10 
-
-							break;
-					}
-					//echo '<br> ---- question ratings ---  <br>';
-					//echo print_r($qrate);
-					//echo '<br> ---- question ratings ---  <br>';
+			foreach($dates as $date){
+				if(($rate['date'] == $date) && !empty($qsum[$rate['date']]) ){					
+					$qsum[$rate['date']] +=  1;
+				}elseif(($rate['date'] == $date) && empty($qsum[$rate['date']]) ){					
+					$qsum[$rate['date']] = 0;
+					$qsum[$rate['date']] +=  1;
 				}
 			}
-			
-			$rqrate[$counter] = array_sum($qrate);
-			$counter++; 
+					//echo '<br> ---- date ---  <br>';
+					//echo $date;
+					//print_r($rate);
+					//print_r($keys);
+					//echo '<br> ---- date ---  <br>';
+					$prate = 0; //percentage value of ratings
+					$aVal = array(); //array value for ratings that is greater than 0
+					for($i=1; $i <= 5; $i++){
+						$aVal[$i] = $rate[('rate_'.$i)]; //collecting ratings that are greater than 0
+						//$aVal = array_push($aVal));			
+					}
+					//this is used to filter an array based on a class function
+					$tRate = array_filter($aVal, array(&$this, "filterValue"));
+					//$count = count($tRate);
+					$asum = array_sum($tRate); //total sum of sample
+					$qrate = array(); //ratings for each question
+					//echo '<br> ---- rooovalue ---  <br>';
+					//print_r($tRate);
+					//echo '<br> ---- rsssvalue ---  <br>';
+					
+					//echo '<br> ----  sum  ---  <br>';
+					//print_r($asum);
+					//echo '<br> ---- sum---  <br>';
 				
+					for($a=1; $a <= 5; $a++){			
+						switch($keys[($a-1)]){
+							case 'rate_1':
+								$prate = 2; //rating 1 is rated 10
+								$qrate[($a-1)] = ($rate['rate_1']/$asum)*$prate; //set rate 1 percentage out of 10 
+
+								break;
+							case 'rate_2':
+								$prate = 4; //rating 1 is rated 10
+								$qrate[($a-1)] = ($rate['rate_2']/$asum)*$prate; //set rate 1 percentage out of 10 
+
+								break;
+							case 'rate_3':
+								$prate = 6; //rating 1 is rated 10
+								$qrate[($a-1)] = ($rate['rate_3']/$asum)*$prate; //set rate 1 percentage out of 10 
+
+								break;
+							case 'rate_4':
+								$prate = 8; //rating 1 is rated 10
+								$qrate[($a-1)] = ($rate['rate_4']/$asum)*$prate; //set rate 1 percentage out of 10 
+
+								break;
+							case 'rate_5':
+								$prate = 10; //rating 1 is rated 10
+								$qrate[($a-1)] = ($rate['rate_5']/$asum)*$prate; //set rate 1 percentage out of 10 
+
+								break;
+						}
+						//echo '<br> ---- question ratings ---  <br>';
+						//echo print_r($qrate);
+						//echo '<br> ---- question ratings ---  <br>';
+					}
+					
+					$rqrate[$counter] = array(
+							'ccode' => $rate['ccode'], //set course code
+							''.$id1.'' => $rate[''.$id1.''], //set an id to be collected
+							''.$id2.'' => $rate[''.$id2.''], //setan id to be collected
+							'date' => $rate['date'], //set date
+							'orate' => array_sum($qrate) //set the ratings
+						);
+					$counter++; 
+						
+					//echo '<br> ---- question sum ---  <br>';
+					//print_r($rqrate);
+					//echo '<br> ---- question sum ---  <br>';
+					
+					//echo '<br> ----  sum  ---  <br>';
+					//print_r($asum);
+					//echo '<br> ---- sum---  <br>';
+				//}
+		//	}	
+		}
+		//echo '<br> ---- question sum ---  <br>';
+		//print_r($rqrate);
+		//echo '<br> ---- question sum ---  <br>';
+		
+		foreach($rqrate as $row){
+			foreach($dates as $date){
+				if(($date == $row['date']) && !empty($orate[$row['date']]) ){
+					$orate[$row['date']] += $row['orate']; 
+				}elseif(($date == $row['date']) && empty($orate[$row['date']]) ){
+					$orate[$row['date']] = 0;
+					$orate[$row['date']] += $row['orate']; 
+				}
+			}
+		}
+		//echo '<br> ---- question sum ---  <br>';
+		//print_r($orate);
+		//echo '<br> ---- question sum ---  <br>';
+		
+		
+		foreach($rqrate as $row){
+		if(in_array($row['date'], $dates)){
 			//echo '<br> ---- question sum ---  <br>';
-			//print_r($rqrate);
+			//echo $row['date'];
 			//echo '<br> ---- question sum ---  <br>';
-			
-			//echo '<br> ----  sum  ---  <br>';
-			//print_r($asum);
-			//echo '<br> ---- sum---  <br>';
-			
+			$loc = array_search($row['date'], $dates); //check the position within the an array where it is equal to
+			//echo '<br> ---- loc ---  <br>';
+			//echo $loc;
+			//echo '<br> ---- date ---  <br>';
+			//echo $orate[$dates[$loc]];
+			//echo '<br> ---- num ---  <br>';
+			//print_r($qsum);
+			$rqtrate[$loc]['orate'] = round(($orate[$dates[$loc]]/($qsum[$dates[$loc]] * 10))*5); //Set the overall ratings value of faculty of Social Sciences in its respectfully index					
+			$rqtrate[$loc]['ccode'] = $row['ccode'];	//Set the overall ratings value of faculty of Social Sciences in its respectfully index					
+			$rqtrate[$loc][''.$id1.''] = $row[''.$id1.''];	//Set the overall ratings value of faculty of Social Sciences in its respectfully index					
+			$rqtrate[$loc][''.$id2.''] = $row[''.$id2.''];	//Set the overall ratings value of faculty of Social Sciences in its respectfully index					
+			$rqtrate[$loc]['date'] = $dates[$loc];	 //Set the date of faculty of Social Sciences in its respectfully index						
+			}
 		}
 		
-		$rqtrate = round((array_sum($rqrate)/($qsum * 10))*5);
 		$counter++;
-		return $rqtrate	
+		echo '<br> ---- date ---  <br>';
+		print_r($rqtrate[0]['date']);
 		//echo '<br> ---- question type sum ---  <br>';
-		//print_r($rqtrate);
-		//echo '<br> ---- question type sum ---  <br>';
-	
+		return $rqtrate;
 	}
 	
 	private function filterValue($aVal){
@@ -324,10 +374,137 @@ class Course extends Department{
 		  return true;
 		  }	
 	}
+}
+class Department extends Faculty{
 
 }
 class Lecturer extends Department{
-
+	public function __construct(){
+		parent::__construct(); //Call the parent construct with its methods and varibales;
+		echo '<br> ---- course ---  <br>';
+		$courseSelect = $this->SelectQuery(
+			't1.ques_id, t1.ccode, t2.lec_id, t2.fac_id, t1.date, t1.rate_1, t1.rate_2, t1.rate_3, t1.rate_4, t1.rate_5',
+			'ugrad_results as t1 join ugrad_courses as t2 on',
+			't1.ccode = t2.ccode WHERE ques_id LIKE \'lec%\'');
+		$rResults = $this->calcRatings($courseSelect, 'lec_id', 'fac_id'); //As sson as the class is initiated the course will be rated
+		echo '<br> ---- course ---  <br>';
+		foreach($rResults as $row){
+			if($this->NumRowExists($row['fac_id'].'_lecturer', 'where ccode = \''.$row['lec_id'].'\' and \''.$row['ccode'].'\' and date = \''.$row['date'].'\'') > 0){
+				$this->updateData($row);
+			}else{
+				$this->insertData($row);
+			}
+		}
+	}
+	
+	private function insertData($row){
+		echo '<br>---- array ---<br>';
+		//print_r($array);
+		//foreach($array as $row){
+			echo '<br>---- fac id ---<br>';
+			echo $row['fac_id'];
+			//switch($row['fac_id']){				
+				//case 'fsat':
+					try{
+						$sql = 'insert into '.$row['fac_id'].'_lecturer(ccode, lec_id, orate, date) 
+							values(\''.$row['ccode'].'\', \''.$row['lec_id'].'\', '.$row['orate'].', \''.$row['date'].'\' )'; 
+							echo $sql;
+						if(!$this->db->query($sql)){
+							throw new Exception('');
+						}
+					}catch(Exception $e){
+						echo $e->getMessage();
+					}
+			//}
+		//}
+	}
+	
+	private function updateData($row){
+		//echo '<br>---- array ---<br>';
+		//print_r($array);
+		//foreach($array as $row){
+			//echo '<br>---- fac id ---<br>';
+			//echo $row['fac_id'];
+			//switch($row['fac_id']){				
+				//case 'fsat':
+					try{
+						$sql = 'update into '.$row['fac_id'].'_ugrad_courses set orate = '.$row['orate'].' where ccode = \''.$row['lec_id'].'\' and ccode = \''.$row['date'].'\' and date = \''.$row['date'].'\' )'; 
+							echo $sql;
+						if(!$this->db->query($sql)){
+							throw new Exception('');
+						}
+					}catch(Exception $e){
+						echo $e->getMessage();
+					}
+			//}
+		//}
+	}
+	
+	
+	
+}
+class Course extends Department{
+	public function __construct(){
+		parent::__construct(); //Call the parent construct with its methods and varibales;
+		echo '<br> ---- course ---  <br>';
+		$courseSelect = $this->SelectQuery(
+			't1.ques_id, t1.ccode, t2.depid, t2.fac_id, t1.date, t1.rate_1, t1.rate_2, t1.rate_3, t1.rate_4, t1.rate_5',
+			'ugrad_results as t1 join ugrad_courses as t2 on',
+			't1.ccode = t2.ccode WHERE ques_id LIKE \'cou%\'');
+		$rResults = $this->calcRatings($courseSelect, 'depid', 'fac_id'); //As sson as the class is initiated the course will be rated
+		echo '<br> ---- course ---  <br>';
+		foreach($rResults as $row){
+			if($this->NumRowExists($row['fac_id'].'_ugrad_courses', 'where ccode = \''.$row['ccode'].'\' and date = \''.$row['date'].'\'') > 0){
+				$this->updateData($row);
+			}else{
+				$this->insertData($row);
+			}
+		}
+	}
+	
+	private function insertData($row){
+		echo '<br>---- array ---<br>';
+		//print_r($array);
+		//foreach($array as $row){
+			echo '<br>---- fac id ---<br>';
+			echo $row['fac_id'];
+			//switch($row['fac_id']){				
+				//case 'fsat':
+					try{
+						$sql = 'insert into '.$row['fac_id'].'_ugrad_courses(ccode, depid, orate, date) 
+							values(\''.$row['ccode'].'\', \''.$row['depid'].'\', '.$row['orate'].', \''.$row['date'].'\' )'; 
+							echo $sql;
+						if(!$this->db->query($sql)){
+							throw new Exception('');
+						}
+					}catch(Exception $e){
+						echo $e->getMessage();
+					}
+			//}
+		//}
+	}
+	
+	private function updateData($row){
+		//echo '<br>---- array ---<br>';
+		//print_r($array);
+		//foreach($array as $row){
+			//echo '<br>---- fac id ---<br>';
+			//echo $row['fac_id'];
+			//switch($row['fac_id']){				
+				//case 'fsat':
+					try{
+						$sql = 'update into '.$row['fac_id'].'_ugrad_courses set orate = '.$row['orate'].' where ccode = \''.$row['date'].'\' and date = \''.$row['date'].'\' )'; 
+							echo $sql;
+						if(!$this->db->query($sql)){
+							throw new Exception('');
+						}
+					}catch(Exception $e){
+						echo $e->getMessage();
+					}
+			//}
+		//}
+	}
+	
 
 }
 

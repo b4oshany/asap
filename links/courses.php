@@ -1,12 +1,12 @@
 <?php
 require_once '../mysql/faculties.class.php';
-$rcourses = new Course; //initiating the Course class
+$rcourses = new Lecturer; //initiating the Course class
 //if($courses->RowExists('ugrad_courses','')){
-	$scinfo = $rcourses->SelectQuery('coursename, ccode', 'ugrad_courses',''); //collect the course name and id
+	//$scinfo = $rcourses->SelectQuery('coursename, ccode', 'ugrad_courses',''); //collect the course name and id
 
-	$acinfo = $rcourses->ReturnArrayData($scinfo); //collect the course name and id
+	//$acinfo = $rcourses->ReturnArrayData($scinfo); //collect the course name and id
 	//$sacinfo = $courses->setArrayDataOut($acinfo); //collect the course name and id
-	echo '<br> ---- okay ---  <br>';
+	//echo '<br> ---- okay ---  <br>';
 	//print_r($acinfo);
 //}else{
 	//echo 'No Available Courses';
