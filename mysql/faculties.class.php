@@ -362,7 +362,7 @@ class Faculty extends Table{
 		}
 		
 		$counter++;
-		echo '<br> ---- date ---  <br>';
+		echo '<br> ---- question  ---  <br>';
 		print_r($rqtrate[0]['date']);
 		//echo '<br> ---- question type sum ---  <br>';
 		return $rqtrate;
@@ -378,71 +378,6 @@ class Faculty extends Table{
 class Department extends Faculty{
 
 }
-class Lecturer extends Department{
-	public function __construct(){
-		parent::__construct(); //Call the parent construct with its methods and varibales;
-		echo '<br> ---- course ---  <br>';
-		$courseSelect = $this->SelectQuery(
-			't1.ques_id, t1.ccode, t2.lec_id, t2.fac_id, t1.date, t1.rate_1, t1.rate_2, t1.rate_3, t1.rate_4, t1.rate_5',
-			'ugrad_results as t1 join ugrad_courses as t2 on',
-			't1.ccode = t2.ccode WHERE ques_id LIKE \'lec%\'');
-		$rResults = $this->calcRatings($courseSelect, 'lec_id', 'fac_id'); //As sson as the class is initiated the course will be rated
-		echo '<br> ---- course ---  <br>';
-		foreach($rResults as $row){
-			if($this->NumRowExists($row['fac_id'].'_lecturer', 'where ccode = \''.$row['lec_id'].'\' and \''.$row['ccode'].'\' and date = \''.$row['date'].'\'') > 0){
-				$this->updateData($row);
-			}else{
-				$this->insertData($row);
-			}
-		}
-	}
-	
-	private function insertData($row){
-		echo '<br>---- array ---<br>';
-		//print_r($array);
-		//foreach($array as $row){
-			echo '<br>---- fac id ---<br>';
-			echo $row['fac_id'];
-			//switch($row['fac_id']){				
-				//case 'fsat':
-					try{
-						$sql = 'insert into '.$row['fac_id'].'_lecturer(ccode, lec_id, orate, date) 
-							values(\''.$row['ccode'].'\', \''.$row['lec_id'].'\', '.$row['orate'].', \''.$row['date'].'\' )'; 
-							echo $sql;
-						if(!$this->db->query($sql)){
-							throw new Exception('');
-						}
-					}catch(Exception $e){
-						echo $e->getMessage();
-					}
-			//}
-		//}
-	}
-	
-	private function updateData($row){
-		//echo '<br>---- array ---<br>';
-		//print_r($array);
-		//foreach($array as $row){
-			//echo '<br>---- fac id ---<br>';
-			//echo $row['fac_id'];
-			//switch($row['fac_id']){				
-				//case 'fsat':
-					try{
-						$sql = 'update into '.$row['fac_id'].'_ugrad_courses set orate = '.$row['orate'].' where ccode = \''.$row['lec_id'].'\' and ccode = \''.$row['date'].'\' and date = \''.$row['date'].'\' )'; 
-							echo $sql;
-						if(!$this->db->query($sql)){
-							throw new Exception('');
-						}
-					}catch(Exception $e){
-						echo $e->getMessage();
-					}
-			//}
-		//}
-	}
-	
-	
-	
-}
 class Course extends Department{
 	public function __construct(){
 		parent::__construct(); //Call the parent construct with its methods and varibales;
@@ -450,61 +385,90 @@ class Course extends Department{
 		$courseSelect = $this->SelectQuery(
 			't1.ques_id, t1.ccode, t2.depid, t2.fac_id, t1.date, t1.rate_1, t1.rate_2, t1.rate_3, t1.rate_4, t1.rate_5',
 			'ugrad_results as t1 join ugrad_courses as t2 on',
-			't1.ccode = t2.ccode WHERE ques_id LIKE \'cou%\'');
+			't1.ccode = t2.ccode WHERE ques_id LIKE \'lec%\'');
 		$rResults = $this->calcRatings($courseSelect, 'depid', 'fac_id'); //As sson as the class is initiated the course will be rated
-		echo '<br> ---- course ---  <br>';
-		foreach($rResults as $row){
-			if($this->NumRowExists($row['fac_id'].'_ugrad_courses', 'where ccode = \''.$row['ccode'].'\' and date = \''.$row['date'].'\'') > 0){
-				$this->updateData($row);
-			}else{
-				$this->insertData($row);
-			}
-		}
+		echo '<br> ---- course ---  <br>';	
+		$this->insertData($rResults);
 	}
 	
-	private function insertData($row){
+	private function insertData($array){
 		echo '<br>---- array ---<br>';
-		//print_r($array);
-		//foreach($array as $row){
+		print_r($array);
+		foreach($array as $row){
 			echo '<br>---- fac id ---<br>';
 			echo $row['fac_id'];
 			//switch($row['fac_id']){				
 				//case 'fsat':
 					try{
 						$sql = 'insert into '.$row['fac_id'].'_ugrad_courses(ccode, depid, orate, date) 
-							values(\''.$row['ccode'].'\', \''.$row['depid'].'\', '.$row['orate'].', \''.$row['date'].'\' )'; 
+							values(\''.$row['ccode'].'\', \''.$row['depid'].'\', '.$row['orate'].', \''.$this->convertDate($row['date']).'\' )'; 
 							echo $sql;
 						if(!$this->db->query($sql)){
-							throw new Exception('');
+							throw new Exception(parent::errr);
 						}
 					}catch(Exception $e){
 						echo $e->getMessage();
 					}
 			//}
-		//}
+		}
+	}
+	private function convertDate($date){
+		echo '<br> ---- <br>'.substr($date, 0, 3).'<br> ---- <br>';
+		switch(substr($date,0, 3)){
+			case 'Jan':
+				return ''.substr($date, -4).'-'.'-01-28';					
+				break;
+			case 'Feb':
+				return ''.substr($date, -4).'-'.'-02-28';
+				break;
+			case 'Mar':
+				return ''.substr($date, -4).'-'.'-03-28';
+				break;
+			case 'Apr':
+				return ''.substr($date, -4).'-'.'-04-28';
+				break;
+			case 'May':
+				return ''.substr($date, -4).'-'.'-05-28';
+				break;
+			case 'Jun':
+				return ''.substr($date, -4).'-'.'-06-28';
+				break;
+			case 'Ju;':
+				return ''.substr($date, -4).'-'.'-07-28';
+				break;
+			case 'Aug':
+				return ''.substr($date, -4).'-'.'-08-28';
+				break;
+			case 'Sep':
+				return ''.substr($date, -4).'-'.'-09-28';
+				break;
+			case 'Oct':
+				return ''.substr($date, -4).'-'.'-10-28';
+				break;
+			case 'Nov':
+				return ''.substr($date, -4).'-'.'-11-28';
+				break;
+			case 'Dec':
+				return '2012-'.'-12-28';
+				break;
+		}
+	
 	}
 	
-	private function updateData($row){
-		//echo '<br>---- array ---<br>';
-		//print_r($array);
-		//foreach($array as $row){
-			//echo '<br>---- fac id ---<br>';
-			//echo $row['fac_id'];
-			//switch($row['fac_id']){				
-				//case 'fsat':
-					try{
-						$sql = 'update into '.$row['fac_id'].'_ugrad_courses set orate = '.$row['orate'].' where ccode = \''.$row['date'].'\' and date = \''.$row['date'].'\' )'; 
-							echo $sql;
-						if(!$this->db->query($sql)){
-							throw new Exception('');
-						}
-					}catch(Exception $e){
-						echo $e->getMessage();
-					}
-			//}
-		//}
-	}
 	
+}
+class Lecturer extends Department{
+	public function __construct(){
+		parent::__construct(); //Call the parent construct with its methods and varibales;
+		echo '<br> ---- lecture ---  <br>';
+		$courseSelect = $this->SelectQuery(
+			't1.ques_id, t1.ccode, t2.depid, t1.date, t1.rate_1, t1.rate_2, t1.rate_3, t1.rate_4, t1.rate_5',
+			'ugrad_results as t1 join ugrad_courses as t2 on',
+			't1.ccode = t2.ccode WHERE ques_id LIKE \'lec%\'');
+		$this->calcRatings($courseSelect, 'depid'); //As sson as the class is initiated the course will be rated
+		echo '<br> ---- lecture ---  <br>';	
+	}
+
 
 }
 
