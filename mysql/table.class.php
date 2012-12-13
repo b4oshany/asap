@@ -1,5 +1,5 @@
 <?php
-require_once '../etc/connect.inc.php';
+require_once 'etc/connect.inc.php';
 //create_table(table name, column);
 
 //campus -> id int(10), campus id varchar(15), campus name string(35), ratings int(100), date date
@@ -45,11 +45,11 @@ class Table extends DatabaseConnect{
 		try{
 			$sql = 'select '.$select_condition.' from '.$from_condition.' '.$query_condition.'';
 			$run_query = $this->db->query($sql);
+			//echo $sql;
 			//Checking if the query ran successfully, if not then throw an exception
 			if(!$run_query){
 				throw new Exception(parent::errr);
 			}else{
-				echo 'ok';
 				return $run_query;
 			}
 		}catch(Exception $e){
@@ -71,7 +71,28 @@ class Table extends DatabaseConnect{
 				}else{
 					return false;
 				}*/
+				echo count($run_query);
 				return count($run_query);
+			}
+		}catch(Exception $e){
+			echo $e->getMessage();
+		}		
+	}
+	
+	public function RowExists($from_condition, $query_condition){
+		try{
+			$sql = 'select * from '.$from_condition.' '.$query_condition.'';
+			//echo '<br>'.$sql;
+			$run_query = $this->db->query($sql);
+			//Checking if the query ran successfully, if not then throw an exception
+			if(!$run_query){
+				throw new Exception(parent::errr);
+			}else{
+				if(count($run_query) > 0){
+					return true;
+				}else{
+					return false;
+				}
 			}
 		}catch(Exception $e){
 			echo $e->getMessage();

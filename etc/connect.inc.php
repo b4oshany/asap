@@ -16,14 +16,14 @@
 		
 		public function __construct(){
 			$this->db = new PDO("mysql:dbname=".$this->mysql_db."", $this->mysql_user, $this->mysql_pass);
-			echo 'Attempting connection.........';
+			//echo 'Attempting connection.........';
 			try{
 				if($this->connect() !=true){
 					echo 'connection failed';
 					$db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-				}else{
-					echo 'connected';
-				}
+				}//else{
+					//echo 'connected';
+				//}
 			}catch(PDOException $e){
 				echo 'Errrr!: '.$e->getMessage();	
 			}

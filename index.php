@@ -20,10 +20,15 @@
 	//include ('templates/'.$template.'/body.php');
 	include ('templates/bion/index.php');
 	
+	
 //}else{
 	// else redirect the user to the login page
 	//header('location: login.php');
 //}
+?>
+<?php //include 'links/display.php';
+	//$displayGraph = new DisplayGraph;
+	//$displayGraph->facGraph();
 ?>
 </div>
 </body>
