@@ -39,6 +39,7 @@ Class DataVisualization{
           title: 'Company Performance',
 		curveType:"function",
 		  pointSize: 5,
+		  backgroundColor: '#eee',
 		  animation:{
 			duration: 1000,
 			easing: 'out'
@@ -67,6 +68,7 @@ Class DataVisualization{
 
         var options = {
           title: 'Company Performance',
+		   backgroundColor: '#eee',
           vAxis: {title: 'Year',  titleTextStyle: {color: 'red'}}
         };
         var chart = new google.visualization.BarChart(document.getElementById('chart_div'));
@@ -87,7 +89,8 @@ Class DataVisualization{
         ]);
 
         var options = {
-          title: 'My Daily Activities'
+			backgroundColor: '#eee',
+			title: 'My Daily Activities'
         };
 
         var chart = new google.visualization.PieChart(document.getElementById('chart_div'));
@@ -108,8 +111,9 @@ Class DataVisualization{
         ]);
 
         var options = {
-          title: 'Company Performance',
-          vAxis: {title: 'Year',  titleTextStyle: {color: 'red'}}
+			 backgroundColor: '#eee',
+			title: 'Company Performance',
+			vAxis: {title: 'Year',  titleTextStyle: {color: 'red'}}
         };
 
         var chart = new google.visualization.BarChart(document.getElementById('chart_div'));
@@ -135,6 +139,7 @@ Class DataVisualization{
         var options = {
           width: 600, height: 400,
           title: 'The decline of \'The 39 Steps\'',
+		   backgroundColor: '#eee',
           vAxis: {title: 'Accumulated Rating'},
           isStacked: true
         };

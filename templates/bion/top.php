@@ -1,29 +1,25 @@
-<div id="tophead">
+<div id="headmain">
 	<ul>
-		<li onclick="ulclick('home')">home</li>
-		<li onclick="ulclick('blog')">blog</li>
-		<li onclick="ulclick('news')">news</li>
-		<li onclick="ulclick('forums')">forums</li>
-		<li onclick="ulclick('product')">products</li>
-		<li onclick="ulclick('tutorials')">tutorials</li>
-		<li onclick="ulclick('about')">about us</li>
+		<li onclick="ulclick('fac'), menuclick('forums'" id="selected">home</li>
+		<li onclick="ulclick('fac'), menuclick('forums'">profile</li>
+		<li onclick="ulclick('fac'), menuclick('forums'">about us</li>
+		<li onclick="ulclick('fac'), menuclick('forums'">help</li>
 	</ul>
 </div>
-<div id="toplog"> 
-	<div class="row" id="status">
-		<div class="cell width-4 position-5">
-			<a href="#">Login</a>
-		</div>
-		<div class="cell width-4 position-9">
-			<a href="#">Register</a>
-		</div>
-	</div>
+<div id="space">
 </div>
-<div id="head">
+<div id="headcate">
 	<ul>
-		<a href="#"><li onclick="ulclick('home')">Home</li></a>
-		<a href="#"><li onclick="ulclick('ques')">Questionnaires</li></a>
-		<a href="#"><li onclick="ulclick('datav')">Data Visualization</li></a>
-		<a href="#"><li onclick="ulclick('help')">Help</li></a>
+		<li onclick="ulclick('fac'), menuclick('forums')">Faculties</li>
+		<li onclick="ulclick('dep'), menuclick('forums')">Departments</li>
+		<li onclick="ulclick('cou'), menuclick('forums')">Courses</li>
+		<li onclick="ulclick('lec'), menuclick('forums')">Lecturers</li>
 	</ul>
+</div>
+<div id="mainDataVis">	
+	<div id="chart_div">
+		<br>
+		<h1>Loading......</h1>
+		<img src="templates/bion/img/loading.gif" alt="loading" >
+	</div>	
 </div>

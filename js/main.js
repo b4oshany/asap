@@ -22,5 +22,12 @@ function menuClick(data)
 			break;
 	}
 }
+function loading(){
+	 document.getElementById("chart_div").className = "loading-visible";
+	  var hideDiv = function(){document.getElementById("chart_div").className = "loading-invisible";};
+	  var oldLoad = window.onload;
+	  var newLoad = oldLoad ? function(){hideDiv.call(this);oldLoad.call(this);} : hideDiv;
+	  window.onload = newLoad;
+}
 
 
