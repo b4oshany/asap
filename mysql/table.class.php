@@ -1,5 +1,5 @@
 <?php
-require_once 'etc/connect.inc.php';
+require_once '../../etc/connect.inc.php';
 //create_table(table name, column);
 
 //campus -> id int(10), campus id varchar(15), campus name string(35), ratings int(100), date date

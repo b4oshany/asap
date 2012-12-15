@@ -12,6 +12,9 @@
 <body>
 
 <div id="wrapper">
+
+<script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
+<script type="text/javascript" src="js/loadpage.js"></script>
 <?php 
 //check if the user is logged in
 //if(logedin()){
@@ -26,10 +29,7 @@
 	//header('location: login.php');
 //}
 ?>
-<?php //include 'links/display.php';
-	//$displayGraph = new DisplayGraph;
-	//$displayGraph->facGraph();
-?>
+
 </div>
 </body>
 </html>

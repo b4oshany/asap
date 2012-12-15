@@ -7,7 +7,6 @@
 	</div>
 	<div class="row" >	
 		<div class="cell position-0 width-16" id="content" >
-			<?php include 'links/home.php'; ?>
 		</div>
 	</div>	
 </div>

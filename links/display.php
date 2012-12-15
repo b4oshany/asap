@@ -1,7 +1,7 @@
 
 <?php
-include 'mysql/faculties.class.php';
-include 'mysql/DataVis.class.php';
+include '../../mysql/faculties.class.php';
+include '../../mysql/DataVis.class.php';
 class DisplayGraph {
 	function facGraph(){
 		$facVis = new DataVisualization;
