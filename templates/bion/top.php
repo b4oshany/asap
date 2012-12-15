@@ -1,20 +1,22 @@
-<div id="headmain">
-	<ul>
-		<li onclick="ulclick('fac'), menuclick('forums'" id="selected">home</li>
-		<li onclick="ulclick('fac'), menuclick('forums'">profile</li>
-		<li onclick="ulclick('fac'), menuclick('forums'">about us</li>
-		<li onclick="ulclick('fac'), menuclick('forums'">help</li>
-	</ul>
-</div>
-<div id="space">
-</div>
-<div id="headcate">
-	<ul>
-		<li onclick="ulclick('fac'), menuclick('forums')">Faculties</li>
-		<li onclick="ulclick('dep'), menuclick('forums')">Departments</li>
-		<li onclick="ulclick('cou'), menuclick('forums')">Courses</li>
-		<li onclick="ulclick('lec'), menuclick('forums')">Lecturers</li>
-	</ul>
+<div id="menuBar">
+	<div id="headmain">
+		<ul id="uheadmain">
+			<li ><a href="home">home</a></li>
+			<li ><a href="profile">profile</a></li>
+			<li ><a href="about">about us</a></li>
+			<li ><a href="help">help</a></li>
+		</ul>
+	</div>
+	<div id="space">
+	</div>
+	<div id="headcate">
+		<ul>
+			<li ><a href="faculties">Faculties</a></li>
+			<li ><a href="departments">Departments</a></li>
+			<li ><a href="courses">Courses</a></li>
+			<li ><a href="lecturers">Lecturers</a></li>
+		</ul>
+	</div>
 </div>
 <div id="mainDataVis">	
 	<div id="chart_div">

@@ -1,3 +1,17 @@
+<div id="displayG">
+	<?php 
+	include '../display.php';
+	$displayGraph = new DisplayGraph;		
+	$displayGraph->facGraph(); 
+	?>
+</div>
+<div id="displayC">
+	<h1>This is The Courses Page</h1>
+	<p>
+	This is where queries are run for courses and so forth
+	</p>
+</div>
+<!--
 <script type="text/javascript" src="load.js"></script>
 <script type="text/javascript" src="links/load.js"></script>
 <div class="row">
@@ -21,4 +35,4 @@
 			
 		?>
 	</div>
-</div>
+</div> -->
